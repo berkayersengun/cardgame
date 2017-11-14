@@ -19,6 +19,6 @@ visual studio code :
 github website:
 1. after pushing in visual studio code. on the website you can see the commit you have made. 
 2. use PULL REQUEST on the github website to pull request but it is not a request as we are all administrators. 
-3. Then MERGE with the repo on the server. 
+3. Then MERGE with the repo on the server.    
 
 
