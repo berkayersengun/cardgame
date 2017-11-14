@@ -1,7 +1,4 @@
 # cardgame
-Group Project
+Group Project 
 
-I love brocoli
-
-me too
 
