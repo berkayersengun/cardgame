@@ -21,6 +21,8 @@ public:
 	// display the card
 	void printCard();
 
+	
+
 private:
 	int rank;
 	int suit;
