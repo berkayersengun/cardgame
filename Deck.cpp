@@ -2,9 +2,65 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
+#include "Deck.h"
+#include <random>
+#include <algorithm>
+#include <ctime>
+#include "Card.h"
 
 using namespace std;
 
+int randomFunc(int i) {
+	srand(unsigned(std::time(0)));
+	return rand() % i;
+}
+
+// Constructors
+Deck::Deck() = default;
+
+Deck::Deck(int setNumber) : setNumber(setNumber) {}
+
+// Destructor
+Deck::~Deck() {}
+
+// Lead initilised deck set up to create a single 52 card deck for now
+void Deck::initialiseCardDeck()
+{
+	// add standard 52 cards to deck
+	for (int i = 0; i < this->setNumber; i++) {
+		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
+			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
+				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+			}
+		}
+	}
+}
+int const Deck::getNumberOfCards()
+{
+	return deck.size(); ;
+}
+;
+
+// Prints of the current deck of cards
+void Deck::displayDeck()
+{
+	for (auto iter = deck.begin(); iter != deck.cend(); ++iter) {
+		cout << *iter << "\n";
+	}
+}
+
+// Methods to shuffle the deck - now working yet
+void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
+
+int main() {
+	Deck newDeck(2);
+	newDeck.initialiseCardDeck();
+	newDeck.displayDeck();
+	int deckSize = newDeck.getNumberOfCards();
+	cout << "The number of cards in the deck is " << deckSize << endl;
+}
+
+/*
 //void createInitialisedCardDeck(int set);
 
 int main()
@@ -91,7 +147,7 @@ void DeckOfCards::initialiseCardDeck ()
 
 
 }
-
+*/
 
 
 

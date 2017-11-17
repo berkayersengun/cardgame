@@ -32,9 +32,7 @@ public:
 	//friend bool operator!=(const Card& a, const Card& b);
 
 	// overload output stream operator
-	friend ostream& operator<<( ostream&, const Card &);
-
-	
+	friend ostream& operator<<(ostream&, const Card &);
 
 private:
 	Rank rank;

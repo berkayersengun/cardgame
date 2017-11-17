@@ -3,6 +3,7 @@
 #define __DECK_H
 
 #include "Card.h"
+#include <vector>
 #include <iostream>
 #include <cstdlib>
 
@@ -11,19 +12,20 @@ using namespace std;
 class Deck
 {
 private:
-  
-	// enum { HEARTS = 1, SPADES, DIAMONDS, CLUBS, ERR };
-	// enum { ACE = 1, TEN = 10, JACK = 11, QUEEN = 12, KING = 13 };
-	// enum { DECK_SZ = 52 };
 
-	int deckSize;
-	
+	enum { deckSize = 52 };
+	vector<Card> deck;
+	int setNumber{ 1 };
+
 public:
-	
+
 	Deck();
+	Deck(int setNumber);
 	~Deck();
 	void shuffleDeck();
-	void printDeck();
+	void displayDeck();
+	void initialiseCardDeck();
+	int const getNumberOfCards();
 
 };
 
