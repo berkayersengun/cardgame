@@ -31,7 +31,7 @@ void Deck::initialiseCardDeck()
 	for (int i = 0; i < this->setNumber; i++) {
 		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
 			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
-				deck.push_back(Card::Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
                 //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
 			}
 		}
