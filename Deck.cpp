@@ -58,7 +58,8 @@ void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc);
 int main() {
 	Deck newDeck(1);
 	newDeck.initialiseCardDeck();
-	newDeck.displayDeck();
+    // newDeck.shuffleDeck();
+	// newDeck.displayDeck();
 	int deckSize = newDeck.getNumberOfCards();
 	cout << "The number of cards in the deck is " << deckSize << endl;
   
