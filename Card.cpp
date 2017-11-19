@@ -20,7 +20,7 @@ void Card::setCard(Rank rank, Suit suit)
 	rank = rank;
 	suit = suit;
 }
-
+// Vasanth shitty code
 // return rank two=2 through to Ace
 int Card::getRank()
 {
