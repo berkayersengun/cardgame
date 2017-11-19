@@ -33,6 +33,7 @@ public:
 
 	// overload output stream operator
 	friend ostream& operator<<(ostream&, const Card &);
+	
 
 private:
 	Rank rank;

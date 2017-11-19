@@ -48,16 +48,42 @@ void Deck::displayDeck()
 		cout << *iter << "\n";
 	}
 }
-
+// Return and remove the top card of the deck
+Card Deck::getTopCard() 
+{
+    Card topCard;
+    if(!deck.empty()) {
+        topCard = deck.front();
+        deck.erase(deck.begin());
+    }
+    return topCard;
+}
+// Return and remove the number n-th card of the deck
+Card Deck::getACard(int number) 
+{
+    Card nthCard;
+    if(!deck.empty()) {
+        
+        nthCard = deck[number-1];
+        deck.erase((deck.begin() + number-1));
+    }
+    return nthCard;
+}
 // Methods to shuffle the deck - now working yet
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
 
 int main() {
 	Deck newDeck(2);
 	newDeck.initialiseCardDeck();
-	newDeck.displayDeck();
+    // newDeck.shuffleDeck();
+	// newDeck.displayDeck();
 	int deckSize = newDeck.getNumberOfCards();
-	cout << "The number of cards in the deck is " << deckSize << endl;
+	
+    cout << "The number of cards in the deck is " << deckSize << endl;
+    int number = 5;
+    Card nthCard = newDeck.getACard(number);
+    cout << nthCard << endl;
+
 }
 
 /*

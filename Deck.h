@@ -26,6 +26,8 @@ public:
 	void displayDeck();
 	void initialiseCardDeck();
 	int const getNumberOfCards();
+	Card getTopCard();
+	Card getACard(int number);
 
 };
 
