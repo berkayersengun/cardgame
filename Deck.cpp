@@ -18,7 +18,8 @@ int randomFunc(int i) {
 // Constructors
 Deck::Deck() = default;
 
-Deck::Deck(int setNumber) : setNumber(setNumber) {}
+Deck::Deck(int setNumber) : 
+setNumber(setNumber) {}
 
 // Destructor
 Deck::~Deck() {}
@@ -26,11 +27,12 @@ Deck::~Deck() {}
 // Lead initilised deck set up to create a single 52 card deck for now
 void Deck::initialiseCardDeck()
 {
-	// add standard 52 cards to deck
+	// add standard 52 cards to deck PP
 	for (int i = 0; i < this->setNumber; i++) {
 		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
 			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
-				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+				deck.push_back(Card::Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+                //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
 			}
 		}
 	}
@@ -44,21 +46,32 @@ int const Deck::getNumberOfCards()
 // Prints of the current deck of cards
 void Deck::displayDeck()
 {
+        //auto=vector<Card>::iterator
 	for (auto iter = deck.begin(); iter != deck.cend(); ++iter) {
 		cout << *iter << "\n";
 	}
 }
 
-// Methods to shuffle the deck - now working yet
+// Methods to shuffle the deck - now  working yet
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
 
 int main() {
-	Deck newDeck(2);
+	Deck newDeck(1);
 	newDeck.initialiseCardDeck();
 	newDeck.displayDeck();
 	int deckSize = newDeck.getNumberOfCards();
 	cout << "The number of cards in the deck is " << deckSize << endl;
+  
 }
+
+
+
+
+
+
+
+
+
 
 /*
 //void createInitialisedCardDeck(int set);

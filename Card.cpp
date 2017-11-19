@@ -29,10 +29,10 @@ int Card::getRank()
 // return suit SPA, HRT, CLB, DIA
 int Card::getSuit()
 {
-	return rank;
+	return suit;
 }
 
-std::ostream& operator<<(std::ostream& os, const Card& c)
+ostream& operator<<(ostream& os, const Card& c)
 {
 	Rank r = c.rank;
 	Suit s = c.suit;
