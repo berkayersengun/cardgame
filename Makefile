@@ -1,5 +1,5 @@
 game: Card.o Deck.o
-	g++ -o game Card.o Deck.o
+	g++ -o game Card.o Deck.o -g
 
 Card.o: Card.h Card.cpp
 	g++ -Wall -std=c++11 -ggdb -c Card.cpp
