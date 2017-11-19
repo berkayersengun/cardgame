@@ -28,6 +28,7 @@ public:
 	int const getNumberOfCards();
 	Card getTopCard();
 	Card getACard(int number);
+	Card lookAtCard(int number);
 
 };
 

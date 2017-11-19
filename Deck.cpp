@@ -74,19 +74,32 @@ Card Deck::getACard(int number)
     }
     return nthCard;
 }
+
+Card Deck::lookAtCard(int number) 
+{
+    Card nthCard;
+    if(!deck.empty()) {
+        
+        nthCard = deck[number-1];
+        
+    }
+    return nthCard;
+}
+
+
 // Method to shuffle the deck - now working
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
 
 int main() {
 	Deck newDeck(1);
 	newDeck.initialiseCardDeck();
-    // newDeck.shuffleDeck();
+    newDeck.shuffleDeck();
 	// newDeck.displayDeck();
 	int deckSize = newDeck.getNumberOfCards();
 	
     cout << "The number of cards in the deck is " << deckSize << endl;
     int number = 5;
-    Card nthCard = newDeck.getACard(number);
+    Card nthCard = newDeck.lookAtCard(number);
     cout << nthCard << endl;
   
 }
