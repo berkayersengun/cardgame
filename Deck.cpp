@@ -15,6 +15,7 @@ int randomFunc(int i) {
 	return rand() % i;
 }
 
+
 // Constructors
 Deck::Deck() = default;
 
