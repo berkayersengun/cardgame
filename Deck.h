@@ -15,20 +15,26 @@ private:
 
 	enum { deckSize = 52 };
 	vector<Card> deck;
-	int setNumber{ 1 };
+	vector<Card> deckTemp;
+	//int setNumber{ 1 };
+	int setNumber=1;
 
 public:
 
 	Deck();
 	Deck(int setNumber);
+	Deck( const Deck& otherDeck ); // copy constructor
 	~Deck();
 	void shuffleDeck();
 	void displayDeck();
+	void createEmptyCardDeck();
 	void initialiseCardDeck();
 	int const getNumberOfCards();
 	Card getTopCard();
 	Card getACard(int number);
 	Card lookAtCard(int number);
+	void moveAllCards();
+	void addCard(Card card);
 
 };
 

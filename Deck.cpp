@@ -25,6 +25,11 @@ setNumber(setNumber) {}
 // Destructor
 Deck::~Deck() {}
 
+void Deck::createEmptyCardDeck()
+{
+vector<Card> deck;
+}
+
 // Lead initilised deck set up to create a single 52 card deck for now
 void Deck::initialiseCardDeck()
 {
@@ -32,7 +37,7 @@ void Deck::initialiseCardDeck()
 	for (int i = 0; i < this->setNumber; i++) {
 		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
 			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
-				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+				deck.push_back(Card::Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
                 //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
 			}
 		}
@@ -40,9 +45,44 @@ void Deck::initialiseCardDeck()
 }
 int const Deck::getNumberOfCards()
 {
-	return deck.size(); ;
+	return deckTemp.size(); ;
 }
 ;
+
+void Deck::moveAllCards()
+{
+    // A loop to copy elements of
+	// old vector into new vector
+	// by Iterative method
+	 cout << deck.size()<<endl;
+    
+    auto iter = deck.begin();
+   // auto enditer = deck.back(); // !!defining the iterator for last element
+    
+    while(iter!=deck.end())
+    {
+        deckTemp.push_back(*iter);
+        //iter=deck.erase(iter);
+        iter++;
+    }
+    auto it= deck.begin();
+    while(it!=deck.end())
+    it = deck.erase(it);
+    
+	cout << "Old vector elements are : "<<endl;
+	for (int i=0; i<deck.size(); i++){
+		cout << deck[i] << " ";
+	cout << endl;
+    }
+	cout << "New vector elements are : "<<endl;
+	for (int i=0; i<deckTemp.size(); i++){
+		cout << deckTemp[i] << " ";
+    cout<< endl;
+    }
+	
+
+
+}
 
 // Prints of the current deck of cards
 void Deck::displayDeck()
@@ -77,11 +117,11 @@ Card Deck::getACard(int number)
 
 Card Deck::lookAtCard(int number) 
 {
+    
     Card nthCard;
     if(!deck.empty()) {
         
         nthCard = deck[number-1];
-        
     }
     return nthCard;
 }
@@ -92,14 +132,17 @@ void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc);
 
 int main() {
 	Deck newDeck(1);
+    newDeck.createEmptyCardDeck();
 	newDeck.initialiseCardDeck();
-    newDeck.shuffleDeck();
+    //newDeck.shuffleDeck();
+    newDeck.moveAllCards();
 	// newDeck.displayDeck();
 	int deckSize = newDeck.getNumberOfCards();
 	
     cout << "The number of cards in the deck is " << deckSize << endl;
     int number = 5;
-    Card nthCard = newDeck.lookAtCard(number);
+    Card nthCard ;
+    nthCard =  newDeck.lookAtCard(number);
     cout << nthCard << endl;
   
 }
@@ -113,143 +156,3 @@ int main() {
 
 
 
-/*
-//void createInitialisedCardDeck(int set);
-
-int main()
-{
-    int set;
-    cout<<"enter the number of the sets of cards: "<<endl;
-    //createEmptyCardDeck();
-    cin>>set;
-    DeckOfCards obj;
-    obj.createInitialisedCardDeck();
-    obj.initialiseCardDeck();
-    //createInitialisedCardDeck(set);
-
-}
-
-
-
-class Card{
-
-public:
-    Card();
-    Card(int cardSuit=1, int cardRank=1);
-     ~Card();
-
-
-private:
-    int Rank;
-    int Suit;
-    int RankNumber;
-    int SuitNumber;
-    int rs;
-};
-
-class DeckOfCards
-{
-	public:
-		DeckOfCards(); // constructor initializes deck
-		void createInitialisedCardDeck(int setNum);
-        void initialiseCardDeck (int setNum, int deck);
-	
-	private:
-		vector< int > deck(52,0); // represents deck of cards and values initialised 0
-	
-}; 
-
-Card::Card (int cardSuit, int cardRank)
-{
-    Rank=cardSuit;
-    Suit=cardRank; 
-    rs=Rank*Suit;
-
-}
-
-DeckOfCards::DeckOfCards()
-{
-    vector<int> newDeck; // create new deck vector
-
-   // populate the deck
-    for (int i = 0; i < Card::SuitNumber; i++)
-    {
-        for (int j = 0; j < Card::RankNumber; j++)
-        {
-            newDeck.push_back(Card(i,j));
-            
-        }
-    } 
-
-	// assign the new deck to the deck vector
-	deck() = newDeck;
-
-
-}
-
-void DeckOfCards::initialiseCardDeck ()
-{
-    for (int i = 0; i < 52; i++)
-	{
-		cout<<deck(i∏);
-
-	
-		
-	}
-
-
-
-}
-*/
-
-
-
-/*
-void createEmptyCardDeck (void)
-{
-    vector<string> duck;
-}
-
-void createInitialisedCardDeck(int set)
-{
-    enum Rank {Ace=1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King};
-    enum Suit { Spades, Hearts, Clubs, Diamonds};
-    
-    vector<string> arrRank(13, "Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King");
-    vector<string> arrSuit(4, "Spades", "Hearts", "Clubs", "Diamonds");
-
-    
-    //vector<int> ;
-    for (int k=0; k<set; k++)
-    {
-        for (int i=0; i<4; i++){
-            for(int j=0; j<13; j++){
-             
-
-            cout<<arrRank;
-            }
-            cout<<endl;
-        }
-    }
-
-}
-
-
-
-
-    vector<int> duck;
-    for (int i=0; i<set; i++)
-    {
-        for(int j=0; j<13; j++)
-        cout<<arrRank[j]<<endl;
-       
-
-        //for(int j=0; j<13; j++)
-        // cout<<Suit[i]()<<endl;
-    }
-}   
-
-
-const string Card::faceNames[ RankNumber ] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-const string Card::suitNames[ SuitNumber ] = {"Hearts", "Clubs", "Diamonds", "Spades"};
-*/
