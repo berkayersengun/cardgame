@@ -22,6 +22,7 @@ public:
 
 	Deck();
 	Deck(int setNumber);
+	Deck( const Deck& otherDeck ); // copy constructor
 	~Deck();
 	void shuffleDeck();
 	void displayDeck();
@@ -31,6 +32,7 @@ public:
 	Card getACard(int number);
 	Card lookAtCard(int number);
 	void moveAllCards();
+	void addCard(Card card);
 
 };
 

@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <ctime>
 #include "Card.h"
+#include <typeinfo>
 
 using namespace std;
 
@@ -25,6 +26,9 @@ setNumber(setNumber) {}
 // Destructor
 Deck::~Deck() {}
 
+// copy constructor
+Deck::Deck( const Deck& otherDeck ) : deck(otherDeck.deck), setNumber(otherDeck.setNumber) {}
+
 // Lead initilised deck set up to create a single 52 card deck for now
 void Deck::initialiseCardDeck()
 {
@@ -32,17 +36,17 @@ void Deck::initialiseCardDeck()
 	for (int i = 0; i < this->setNumber; i++) {
 		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
 			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
-				deck.push_back(Card::Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
                 //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
 			}
 		}
 	}
 }
+
 int const Deck::getNumberOfCards()
 {
 	return deck.size(); ;
-}
-;
+};
 
 void Deck::moveAllCards()
 {
@@ -77,9 +81,6 @@ void Deck::moveAllCards()
 		cout << deckTemp[i] << " ";
     cout<< endl;
     }
-	
-
-
 }
 
 // Prints of the current deck of cards
@@ -124,6 +125,11 @@ Card Deck::lookAtCard(int number)
     return nthCard;
 }
 
+// Add Card method
+void Deck::addCard(Card card) 
+{
+    if (typeid(card).name() == typeid(Card).name()) deck.insert(deck.begin(),card);
+}
 
 // Method to shuffle the deck - now working
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
@@ -133,16 +139,19 @@ int main() {
     
 	newDeck.initialiseCardDeck();
     //newDeck.shuffleDeck();
-    newDeck.moveAllCards();
+    // newDeck.moveAllCards();
 	// newDeck.displayDeck();
-	int deckSize = newDeck.getNumberOfCards();
 	
+	Deck copyDeck = newDeck;
+    int deckSize = copyDeck.getNumberOfCards();
     cout << "The number of cards in the deck is " << deckSize << endl;
     int number = 5;
     Card nthCard ;
-    nthCard =  newDeck.lookAtCard(number);
+    nthCard =  copyDeck.lookAtCard(number);
     cout << nthCard << endl;
-  
+    Card anewCard (Two, SPA);
+    copyDeck.addCard(anewCard);
+    cout << copyDeck.getTopCard() << endl;
 }
 
 
