@@ -16,8 +16,8 @@ private:
 	enum { deckSize = 52 };
 	vector<Card> deck;
 	vector<Card> deckTemp;
-	//int setNumber{ 1 };
-	int setNumber=1;
+	int setNumber{ 1 };
+	//int setNumber=1;
 
 public:
 

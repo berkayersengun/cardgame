@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <ctime>
 #include "Card.h"
+#include <typeinfo>
 
 using namespace std;
 
@@ -29,6 +30,8 @@ void Deck::createEmptyCardDeck()
 {
 vector<Card> deck;
 }
+// copy constructor
+Deck::Deck( const Deck& otherDeck ) : deck(otherDeck.deck), setNumber(otherDeck.setNumber) {}
 
 // Lead initilised deck set up to create a single 52 card deck for now
 void Deck::initialiseCardDeck()
@@ -43,11 +46,47 @@ void Deck::initialiseCardDeck()
 		}
 	}
 }
+
 int const Deck::getNumberOfCards()
 {
-	return deckTemp.size(); ;
+	//return deckTemp.size(); ;
+	return deck.size(); ;
+};
+
+void Deck::moveAllCards()
+{
+    // A loop to copy elements of
+	// old vector into new vector
+	// by Iterative method
+	 cout << deck.size()<<endl;
+    
+    auto iter = deck.begin();
+    auto enditer = deck.back(); // !!defining the iterator for last element
+    
+    while(iter!=deck.end())
+    {
+        deckTemp.push_back(*iter);
+        iter++;
+        iter=deck.erase(iter);
+
+    }
+    auto it= deck.begin();
+    while(it!=deck.end())
+    it = deck.erase(it);
+    
+   
+
+	cout << "Old vector elements are : "<<endl;
+	for (int i=0; i<deck.size(); i++){
+		cout << deck[i] << " ";
+	cout << endl;
+    }
+	cout << "New vector elements are : "<<endl;
+	for (int i=0; i<deckTemp.size(); i++){
+		cout << deckTemp[i] << " ";
+    cout<< endl;
+    }
 }
-;
 
 void Deck::moveAllCards()
 {
@@ -126,6 +165,11 @@ Card Deck::lookAtCard(int number)
     return nthCard;
 }
 
+// Add Card method
+void Deck::addCard(Card card) 
+{
+    if (typeid(card).name() == typeid(Card).name()) deck.insert(deck.begin(),card);
+}
 
 // Method to shuffle the deck - now working
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
@@ -137,14 +181,17 @@ int main() {
     //newDeck.shuffleDeck();
     newDeck.moveAllCards();
 	// newDeck.displayDeck();
-	int deckSize = newDeck.getNumberOfCards();
 	
+	Deck copyDeck = newDeck;
+    int deckSize = copyDeck.getNumberOfCards();
     cout << "The number of cards in the deck is " << deckSize << endl;
     int number = 5;
     Card nthCard ;
-    nthCard =  newDeck.lookAtCard(number);
+    nthCard =  copyDeck.lookAtCard(number);
     cout << nthCard << endl;
-  
+    Card anewCard (Two, SPA);
+    copyDeck.addCard(anewCard);
+    cout << copyDeck.getTopCard() << endl;
 }
 
 
