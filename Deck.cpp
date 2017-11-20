@@ -40,7 +40,7 @@ void Deck::initialiseCardDeck()
 	for (int i = 0; i < this->setNumber; i++) {
 		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
 			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
-				deck.push_back(Card::Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
                 //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
 			}
 		}
@@ -67,7 +67,7 @@ void Deck::moveAllCards()
     {
         deckTemp.push_back(*iter);
         iter++;
-        iter=deck.erase(iter);
+        //iter=deck.erase(iter);
 
     }
     auto it= deck.begin();
@@ -88,40 +88,6 @@ void Deck::moveAllCards()
     }
 }
 
-void Deck::moveAllCards()
-{
-    // A loop to copy elements of
-	// old vector into new vector
-	// by Iterative method
-	 cout << deck.size()<<endl;
-    
-    auto iter = deck.begin();
-   // auto enditer = deck.back(); // !!defining the iterator for last element
-    
-    while(iter!=deck.end())
-    {
-        deckTemp.push_back(*iter);
-        //iter=deck.erase(iter);
-        iter++;
-    }
-    auto it= deck.begin();
-    while(it!=deck.end())
-    it = deck.erase(it);
-    
-	cout << "Old vector elements are : "<<endl;
-	for (int i=0; i<deck.size(); i++){
-		cout << deck[i] << " ";
-	cout << endl;
-    }
-	cout << "New vector elements are : "<<endl;
-	for (int i=0; i<deckTemp.size(); i++){
-		cout << deckTemp[i] << " ";
-    cout<< endl;
-    }
-	
-
-
-}
 
 // Prints of the current deck of cards
 void Deck::displayDeck()
