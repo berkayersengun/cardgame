@@ -19,6 +19,9 @@ private:
 	//int setNumber{ 1 };
 	int setNumber=1;
 
+	int MIN_SET_CARDS = 1;
+	int MAX_SET_CARDS = 2;
+
 public:
 
 	Deck();

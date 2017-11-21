@@ -31,7 +31,7 @@ Deck::Deck( const Deck& otherDeck ) : deck(otherDeck.deck), setNumber(otherDeck.
 
 void Deck::createEmptyCardDeck()
 {
-vector<Card> deck;
+    vector<Card> deck; 
 }
 
 
@@ -39,25 +39,34 @@ vector<Card> deck;
 // Lead initilised deck set up to create a single 52 card deck for now
 void Deck::createInitialisedCardDeck(int setNumber)
 {
-	// add standard 52 cards to deck PP
-	for (int i = 0; i < setNumber; i++) {
-		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
-			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
-				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
-                //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
-			}
-		}
-	}
+    //check if setNumber is correct.
+    if(setNumber >= MIN_SET_CARDS && setNumber <= MAX_SET_CARDS){
+        // add standard 52 cards to deck PP
+        for (int i = 0; i < setNumber; i++) {
+            for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
+                for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
+                    
+                    deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
+                    //Card(static_cast<Rank>(rank), static_cast<Suit>(suit))
+                }
+            }
+        }
+
+    }else{
+        cout << "Please use between " << MIN_SET_CARDS << " and " << MAX_SET_CARDS << " set of cards. \n";
+    }
+	
 }
 
 
 //initialises the deck created in the Deck::createInitialisedCardDeck(int setNumber)
-void Deck::initialiseCardDeck(int setNumber,Deck duck)
+void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
 {   
     
-    if(setNumber*52==deck.size())
-    {   duck.displayDeck();
-        cout<<"This is a bullshit method."<<endl;
+    if(setNumber * 52 == deckToInitialise.deck.size())
+    {   
+        deckToInitialise.displayDeck();
+        cout<<"This is a bullshit method." << endl;
         //this might be for only checking purposes cause we have the same shit above
         //Post: deck contains setNum ordered sets of cards or an error is indicated if sufficient resources not available.
     }
@@ -66,18 +75,22 @@ void Deck::initialiseCardDeck(int setNumber,Deck duck)
     
 }
 
-void Deck::deleteCardDeck(Deck duck)
-{
-	 
-    auto it= deck.begin();
-    while(it!=deck.end())
-    it = deck.erase(it);
+void Deck::deleteCardDeck(Deck deckToDelete)
+{	 
+    // auto it= deckToDelete.deck.begin();
+    // while(it != deckToDelete.deck.end())
+    // it = deckToDelete.deck.erase(it);
+
+
+   vector<Card>().swap(deckToDelete.deck);
+
+    //then destructor of deckToDelete ??
 }
 
 int const Deck::getNumberOfCards()
 {
 	//return deckTemp.size(); ;
-	return deck.size(); ;
+	return deck.size();
 };
 
 void Deck::moveAllCards()
@@ -85,7 +98,7 @@ void Deck::moveAllCards()
     // A loop to copy elements of
 	// old vector into new vector
 	// by Iterative method
-	 cout << deck.size()<<endl;
+	 cout << deck.size() <<endl;
     
     auto iter = deck.begin();
     auto enditer = deck.back(); // !!defining the iterator for last element
@@ -156,6 +169,7 @@ Card Deck::lookAtCard(int number)
         
         nthCard = deck[number-1];
     }
+
     return nthCard;
 }
 
@@ -168,30 +182,21 @@ void Deck::addCard(Card card)
 // Method to shuffle the deck - now working
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
 
-int main() {
-	Deck newDeck(1);
-    newDeck.createEmptyCardDeck();
-    int setno=1; //how many sets
-	newDeck.createInitialisedCardDeck(setno);
-    newDeck.initialiseCardDeck(setno,newDeck);
-    newDeck.deleteCardDeck(newDeck);
-    //newDeck.shuffleDeck();
-    newDeck.moveAllCards();
-	// newDeck.displayDeck();
+// int main() {
+// 	Deck newDeck(1);
+//     newDeck.createEmptyCardDeck();
+//     int setno = 1; //how many sets
+// 	newDeck.createInitialisedCardDeck(setno);
+//     newDeck.initialiseCardDeck(setno, newDeck);
+//     cout << " cards : " << newDeck.getNumberOfCards() << "\n";
+
+//     newDeck = newDeck.deleteCardDeck(newDeck);
+
+//     cout << " cards : " << newDeck.getNumberOfCards() << "\n";
 	
-	Deck copyDeck = newDeck;
-    int deckSize = copyDeck.getNumberOfCards();
-    cout << "The number of cards in the deck is " << deckSize << endl;
-    int number = 5;
-    Card nthCard ;
-    nthCard =  copyDeck.lookAtCard(number);
-    cout << nthCard << endl;
-    Card anewCard (Two, SPA);
-    copyDeck.addCard(anewCard);
-    cout << copyDeck.getTopCard() << endl;
-}
 
 
+// }
 
 
 
