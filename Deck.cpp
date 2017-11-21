@@ -26,18 +26,21 @@ setNumber(setNumber) {}
 // Destructor
 Deck::~Deck() {}
 
+// copy constructor
+Deck::Deck( const Deck& otherDeck ) : deck(otherDeck.deck), setNumber(otherDeck.setNumber) {}
+
 void Deck::createEmptyCardDeck()
 {
 vector<Card> deck;
 }
-// copy constructor
-Deck::Deck( const Deck& otherDeck ) : deck(otherDeck.deck), setNumber(otherDeck.setNumber) {}
+
+
 
 // Lead initilised deck set up to create a single 52 card deck for now
-void Deck::initialiseCardDeck()
+void Deck::createInitialisedCardDeck(int setNumber)
 {
 	// add standard 52 cards to deck PP
-	for (int i = 0; i < this->setNumber; i++) {
+	for (int i = 0; i < setNumber; i++) {
 		for (int suit = Suit::SPA; suit <= Suit::DIA; ++suit) {
 			for (int rank = Rank::Ace; rank >= Rank::Two; rank--) {
 				deck.push_back(Card(static_cast<Rank>(rank), static_cast<Suit>(suit)));
@@ -45,6 +48,29 @@ void Deck::initialiseCardDeck()
 			}
 		}
 	}
+}
+
+
+//initialises the deck created in the Deck::createInitialisedCardDeck(int setNumber)
+void Deck::initialiseCardDeck(int setNumber,Deck duck)
+{   
+    
+    if(setNumber*52==deck.size())
+    {   duck.displayDeck();
+        cout<<"This is a bullshit method."<<endl;
+        //this might be for only checking purposes cause we have the same shit above
+        //Post: deck contains setNum ordered sets of cards or an error is indicated if sufficient resources not available.
+    }
+    else 
+    cout<<"not enough data ?";
+    
+}
+
+void Deck::deleteCardDeck(Deck duck){
+	 
+      duck.~Deck();
+
+
 }
 
 int const Deck::getNumberOfCards()
@@ -75,7 +101,7 @@ void Deck::moveAllCards()
     it = deck.erase(it);
     
    
-
+/*
 	cout << "Old vector elements are : "<<endl;
 	for (int i=0; i<deck.size(); i++){
 		cout << deck[i] << " ";
@@ -86,6 +112,7 @@ void Deck::moveAllCards()
 		cout << deckTemp[i] << " ";
     cout<< endl;
     }
+    */
 }
 
 
@@ -143,7 +170,10 @@ void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc);
 int main() {
 	Deck newDeck(1);
     newDeck.createEmptyCardDeck();
-	newDeck.initialiseCardDeck();
+    int setno=1; //how many sets
+	newDeck.createInitialisedCardDeck(setno);
+    newDeck.initialiseCardDeck(setno,newDeck);
+    newDeck.deleteCardDeck(newDeck);
     //newDeck.shuffleDeck();
     newDeck.moveAllCards();
 	// newDeck.displayDeck();

@@ -16,8 +16,8 @@ private:
 	enum { deckSize = 52 };
 	vector<Card> deck;
 	vector<Card> deckTemp;
-	int setNumber{ 1 };
-	//int setNumber=1;
+	//int setNumber{ 1 };
+	int setNumber=1;
 
 public:
 
@@ -28,7 +28,9 @@ public:
 	void shuffleDeck();
 	void displayDeck();
 	void createEmptyCardDeck();
-	void initialiseCardDeck();
+	void createInitialisedCardDeck(int setNumber);
+	void initialiseCardDeck(int setNumber,Deck duck);
+	void deleteCardDeck(Deck deck);
 	int const getNumberOfCards();
 	Card getTopCard();
 	Card getACard(int number);
