@@ -19,9 +19,16 @@ public:
 
 	void displayPlayerDecks();
 
-	void foobar();
+	void simulateGame();
+
+	void createShuffledDeck();
+
+	void playGame();
 
 	vector<Deck> playersDeck;
+
+	Deck shuffledDeck;
+	Deck playedDeck;
 
 
 private: 
