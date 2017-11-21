@@ -30,7 +30,7 @@ public:
 	void createEmptyCardDeck();
 	void createInitialisedCardDeck(int setNumber);
 	void initialiseCardDeck(int setNumber,Deck duck);
-	void deleteCardDeck(Deck deck);
+	void deleteCardDeck(Deck duck);
 	int const getNumberOfCards();
 	Card getTopCard();
 	Card getACard(int number);

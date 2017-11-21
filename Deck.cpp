@@ -62,15 +62,16 @@ void Deck::initialiseCardDeck(int setNumber,Deck duck)
         //Post: deck contains setNum ordered sets of cards or an error is indicated if sufficient resources not available.
     }
     else 
-    cout<<"not enough data ?";
+    cout<<"not enough cards ?";
     
 }
 
-void Deck::deleteCardDeck(Deck duck){
+void Deck::deleteCardDeck(Deck duck)
+{
 	 
-      duck.~Deck();
-
-
+    auto it= deck.begin();
+    while(it!=deck.end())
+    it = deck.erase(it);
 }
 
 int const Deck::getNumberOfCards()
