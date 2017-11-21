@@ -99,6 +99,7 @@ void playGame(){
 }
 
 int main(){
+	cout<<"Hello Welcome to the Game!\n";
 	playGame();
 }
 
