@@ -3,6 +3,8 @@
 #include "Deck.h"
 #include "Card.h"
 #include "CardGame.h"
+#include <iterator>
+#include <vector>
 
 using namespace std;
 
@@ -88,13 +90,37 @@ void playGame(){
 		}
 	}
 
+	//another for loop needed in here for every hand for(each hand loop)
+	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;
+	int suit1,rank1,suit2,rank2;
+	rank2 = game.playedDeck.lookAtCard(1).getRank();
+	suit2 = game.playedDeck.lookAtCard(1).getSuit();
+	for (int k =0; k<numberPlayers; k++)
+	{		
+			//loop for all players 
+		for (int x=0; x<game.playersDeck[k].getNumberOfCards(); x++){
+			 //auto card1 = game.playersDeck[k].lookAtCard(x);
+			rank1 = game.playersDeck[k].lookAtCard(x).getRank();
+			suit1 = game.playersDeck[k].lookAtCard(x).getSuit();	
+			//cout<<"suit is "<<suit<<" rank is "<<rank<<endl;
+			
+			if(rank1==rank2 || suit1==suit2)
+			{
+				game.playedDeck.addCard(game.playersDeck[k].getACard(x));
+			}
+			else 
+			{
+				//game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
+			}
+
+			}
+	}	
+	
+
+	
 	game.displayPlayerDecks();
-
 	cout << "Cards left in shuffledDeck : \n";
-	game.shuffledDeck.displayDeck();
-
-
-
+	game.playedDeck.displayDeck();
 	//game.simulateGame();
 
 	//FINISHED

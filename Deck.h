@@ -40,7 +40,7 @@ public:
 	Card lookAtCard(int number);
 	void moveAllCards();
 	void addCard(Card card);
-
+	
 };
 
 #endif
