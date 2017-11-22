@@ -107,10 +107,12 @@ void playGame(){
 			if(rank1==rank2 || suit1==suit2)
 			{
 				game.playedDeck.addCard(game.playersDeck[k].getACard(x));
+				break;
 			}
 			else 
 			{
-				//game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
+				game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
+				break;
 			}
 
 			}
