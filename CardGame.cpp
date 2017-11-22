@@ -15,11 +15,11 @@ CardGame::~CardGame() {}
 
 
 void CardGame::setPlayers(int numberPlayers){
-	numberPlayers = numberPlayers;
+	//numberPlayers = numberPlayers;
 }
 
 void CardGame::setNumberSets(int numberSets){
-	numberSets = numberSets;
+	//numberSets = numberSets;
 }
 
 void CardGame::displayPlayerDecks(){
@@ -56,11 +56,11 @@ void playGame(){
 
 	//Create new game
 	CardGame game = CardGame(numberPlayers, numberSets);
-
+	
 	//Create shuffled Deck
 	game.shuffledDeck = Deck(numberSets);
 	game.shuffledDeck.createInitialisedCardDeck(numberSets);
-	game.shuffledDeck.shuffleDeck();
+	//game.shuffledDeck.shuffleDeck();
 
 	//Create empty deck for played cards.
 	game.playedDeck = Deck();
@@ -81,8 +81,9 @@ void playGame(){
 	// playersDeck[0].displayDeck();
 
 	// Give each player 7 cards <-- Put that in function later
-	for(int i = 0; i < numberPlayers; i++){
-		for(int j = 0; j < 7; j++){
+	for(int j = 0; j < 7; j++){
+		for(int i = 0; i < numberPlayers; i++){
+		
 			game.playersDeck[i].addCard(game.shuffledDeck.getTopCard());
 		}
 	}
@@ -92,7 +93,9 @@ void playGame(){
 	cout << "Cards left in shuffledDeck : \n";
 	game.shuffledDeck.displayDeck();
 
-	game.simulateGame();
+
+
+	//game.simulateGame();
 
 	//FINISHED
 

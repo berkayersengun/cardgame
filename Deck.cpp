@@ -176,7 +176,8 @@ Card Deck::lookAtCard(int number)
 // Add Card method
 void Deck::addCard(Card card) 
 {
-    if (typeid(card).name() == typeid(Card).name()) deck.insert(deck.begin(),card);
+    if (typeid(card).name() == typeid(Card).name()) 
+    deck.insert(deck.begin(),card);
 }
 
 // Method to shuffle the deck - now working
