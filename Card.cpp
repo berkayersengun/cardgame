@@ -1,7 +1,14 @@
-#include <iostream>
-#include <cstdlib>
-#include <vector>
-#include "Card.h"
+/*
+
+Cardgame by Berkey, Johnson, Luise and Vasanth
+
+Group project for Ed5021/EE6411 November,2017.
+
+*/
+#include <iostream> //Including standard libraries for input and output functions
+#include <cstdlib>	//Including standard general utilities libraries. Particularly for using srand function to shuffle cards
+#include <vector>	//Dynamic memmory allocation is implemented through vector as the data structure 
+#include "Card.h"	//Including header files with class card
 using namespace std;
 // create a “blank” card
 Card::Card() = default;
@@ -20,18 +27,17 @@ void Card::setCard(Rank rank, Suit suit)
 	rank = rank;
 	suit = suit;
 }
-// Vasanth shitty code
-// return rank two=2 through to Ace
+// Function Definition of getRank() returns rank two=2 through to Ace
 int Card::getRank()
 {
 	return rank;
 }
-// return suit SPA, HRT, CLB, DIA
+// Function Definition of getSuit() return suit SPA, HRT, CLB, DIA
 int Card::getSuit()
 {
 	return suit;
 }
-
+//Stream Extraction Overloading operator function definition follows
 ostream& operator<<(ostream& os, const Card& c)
 {
 	Rank r = c.rank;
@@ -39,31 +45,31 @@ ostream& operator<<(ostream& os, const Card& c)
 	os << "Rank : ";
 	switch (r) {
 	case Two:
-		os << '2';
+		os << c.rank;
 		break;
 	case Three:
-		os << '3';
+		os << c.rank;
 		break;
 	case Four:
-		os << '4';
+		os << c.rank;
 		break;
 	case Five:
-		os << '5';
+		os << c.rank;
 		break;
 	case Six:
-		os << '6';
+		os << c.rank;
 		break;
 	case Seven:
-		os << '7';
+		os << c.rank;
 		break;
 	case Eight:
-		os << '8';
+		os << c.rank;
 		break;
 	case Nine:
-		os << '9';
+		os << c.rank;
 		break;
 	case Ten:
-		os << 'T';
+		os << c.rank;
 		break;
 	case Jack:
 		os << 'J';
@@ -98,9 +104,11 @@ ostream& operator<<(ostream& os, const Card& c)
 	return os;
 }
 
-void Card::displayCard()
+
+void Card::displayCard() //Funtion to display the card using this pointer 
+						//called by reference of the data structure "vector"
 {
-	cout << *this << endl;
+	cout << *this << endl; //Using this pointer to display sequentially the cards in the deck
 }
 
 
