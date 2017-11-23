@@ -55,6 +55,8 @@ void playGame(){
 	cout <<  "How many players ?\n";
 	cin >> numberPlayers;
 
+	displayCard();
+
 
 	//Create new game
 	CardGame game = CardGame(numberPlayers, numberSets);

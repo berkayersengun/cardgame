@@ -1,10 +1,10 @@
-#ifndef CARD_H
+#ifndef CARD_H //Creating Header file for class card
 #define CARD_H
 #include <iostream>
 using namespace std;
 
-enum Rank {Two=2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace};
-enum Suit {SPA, HRT, CLB, DIA};
+enum Rank {Two=2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace}; //Declaring variable Rank of type ENUM
+enum Suit {SPA, HRT, CLB, DIA}; //Declaring variable Suit of type ENUM
 
 class Card {
 public:
@@ -17,8 +17,8 @@ public:
 
 	// return rank two=2 through to Ace 
 	// return suit SPA, HRT, CLB, DIA
-	int getSuit();
-	int getRank();
+	int getSuit();// member methods of class Card
+	int getRank();// member methods of class Card
 
 	// set an existing card to a particular value
 	void setCard(Rank rank, Suit suit);
@@ -26,13 +26,9 @@ public:
 	// display the card
 	void displayCard();
 
-	// Overload the "==" and "!=" conparison operators to compare cards
-	//friend bool operator==(const Card& a, const Card& b);
 
-	//friend bool operator!=(const Card& a, const Card& b);
-
-	// overload output stream operator
-	friend ostream& operator<<(ostream&, const Card &);
+	
+	friend ostream& operator<<(ostream&, const Card &); // Stream extraction overloading function prototype
 	
 
 private:
