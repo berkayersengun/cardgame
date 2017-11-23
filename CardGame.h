@@ -29,7 +29,6 @@ public:
 
 	Deck shuffledDeck;
 	Deck playedDeck;
-
 private: 
 	int numberPlayers, numberSets;
 

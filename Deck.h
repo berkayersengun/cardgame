@@ -15,7 +15,7 @@ private:
 
 	enum { deckSize = 52 };
 	vector<Card> deck;
-	vector<Card> deckTemp;
+	vector<Card> deckDest;
 	//int setNumber{ 1 };
 	int setNumber=1;
 
@@ -38,8 +38,9 @@ public:
 	Card getTopCard();
 	Card getACard(int number);
 	Card lookAtCard(int number);
-	void moveAllCards();
+	void moveAllCards(vector<Card> *deck, vector<Card> *deckDest);
 	void addCard(Card card);
+	vector<Card> getDeck();
 	
 };
 

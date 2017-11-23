@@ -93,26 +93,23 @@ int const Deck::getNumberOfCards()
 	return deck.size();
 };
 
-void Deck::moveAllCards()
+void Deck::moveAllCards(vector<Card> *deck, vector<Card> *deckDest)
 {
     // A loop to copy elements of
 	// old vector into new vector
 	// by Iterative method
-	 cout << deck.size() <<endl;
-    
-    auto iter = deck.begin();
-    auto enditer = deck.back(); // !!defining the iterator for last element
-    
-    while(iter!=deck.end())
+   
+    auto iter = deck->begin();
+    while(iter!=deck->end())
     {
-        deckTemp.push_back(*iter);
-        iter++;
-        //iter=deck.erase(iter);
+        deckDest->push_back(*iter);
+        iter=deck->erase(iter);
+        
 
     }
-    auto it= deck.begin();
-    while(it!=deck.end())
-    it = deck.erase(it);
+
+    
+    
     
    
 /*
@@ -180,8 +177,16 @@ void Deck::addCard(Card card)
     deck.insert(deck.begin(),card);
 }
 
+
+vector<Card> Deck::getDeck(){
+    return deck;
+}
+
+
 // Method to shuffle the deck - now working
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
+
+
 
 // int main() {
 // 	Deck newDeck(1);
