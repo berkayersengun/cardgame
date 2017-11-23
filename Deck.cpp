@@ -93,20 +93,13 @@ int const Deck::getNumberOfCards()
 	return deck.size();
 };
 
-void Deck::moveAllCards(vector<Card> *deck, vector<Card> *deckDest)
+void Deck::moveAllCards(vector<Card> deck, vector<Card> deckDest)
 {
     // A loop to copy elements of
 	// old vector into new vector
 	// by Iterative method
    
-    auto iter = deck->begin();
-    while(iter!=deck->end())
-    {
-        deckDest->push_back(*iter);
-        iter=deck->erase(iter);
-        
-
-    }
+    deck.swap(deckDest);
 
     
     

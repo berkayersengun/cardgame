@@ -38,7 +38,7 @@ public:
 	Card getTopCard();
 	Card getACard(int number);
 	Card lookAtCard(int number);
-	void moveAllCards(vector<Card> *deck, vector<Card> *deckDest);
+	void moveAllCards(vector<Card> deck, vector<Card> deckDest);
 	void addCard(Card card);
 	vector<Card> getDeck();
 	

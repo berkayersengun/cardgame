@@ -43,6 +43,10 @@ void createShuffledDeck(){
 }
 
 
+void CardGame::swapDecks(vector<Card> deck1, vector<Card> deck2){
+	deck1.swap(deck2);
+}
+
 void playGame(){
 	int numberSets, numberPlayers;
 
@@ -54,8 +58,6 @@ void playGame(){
 
 	cout <<  "How many players ?\n";
 	cin >> numberPlayers;
-
-	displayCard();
 
 
 	//Create new game
@@ -92,7 +94,12 @@ void playGame(){
 	
 	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;	
 	//game.getPlayers.moveAllCards(playersDeck[1],playersDeck[2]);
-	game.playedDeck.moveAllCards(&game.playersDeck[1].getDeck(),&game.playersDeck[2].getDeck());
+	
+	game.playersDeck[1].displayDeck();
+	cout << "After : \n";
+	game.swapDecks(game.playersDeck[1].getDeck(), game.playersDeck[2].getDeck());
+	game.playersDeck[1].displayDeck();
+
 
 	/*	
 	//another for loop needed in here for every hand for(each hand loop)
@@ -135,11 +142,11 @@ void playGame(){
 		}
 	}			
 	*/
-	game.displayPlayerDecks();
-	cout << "Cards left in playeddeck : \n";
-	game.playedDeck.displayDeck();
-	cout << "Cards left in shuffledDeck : \n";
-	game.shuffledDeck.displayDeck();
+	// game.displayPlayerDecks();
+	// cout << "Cards left in playeddeck : \n";
+	// game.playedDeck.displayDeck();
+	// cout << "Cards left in shuffledDeck : \n";
+	// game.shuffledDeck.displayDeck();
 	//game.simulateGame();
 
 	//FINISHED
