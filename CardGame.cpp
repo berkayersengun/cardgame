@@ -1,5 +1,5 @@
-#include <iostream>
 #include <string>
+#include <iostream>
 #include "Deck.h"
 #include "Card.h"
 #include "CardGame.h"
@@ -114,11 +114,26 @@ void playGame(){
 		
 		if (game.shuffledDeck.getNumberOfCards()==0){
 			
-			vector<Card> dtemp = game.shuffledDeck.getDeck();
-			vector<Card> dtemp1 = game.playedDeck.getDeck();
+			/* vector<Card> dtemp = game.shuffledDeck.getDeck();
+			
 			dtemp.swap(dtemp1);
 			game.shuffledDeck.getDeck() = dtemp;
-			game.playedDeck.getDeck() = dtemp1;
+			game.playedDeck.getDeck() = dtemp1; */
+
+			game.shuffledDeck=game.playedDeck;
+			//game.playedDeck.createEmptyCardDeck();
+			
+			;
+			
+			//auto iter = game.shuffledDeck.lookAtCard(0);
+ 				while(game.playedDeck.getNumberOfCards()!=0)
+				{
+					
+				
+					game.playedDeck.getTopCard();
+					//iter++;
+				}
+		
 			//game.shuffledDeck.moveAllCards(game.shuffledDeck, game);
 		}
 		//loop for each player

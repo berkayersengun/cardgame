@@ -20,8 +20,7 @@ int randomFunc(int i) {
 // Constructors
 Deck::Deck() = default;
 
-Deck::Deck(int setNumber) : 
-setNumber(setNumber) {}
+Deck::Deck(int setNumber) : setNumber(setNumber) {}
 
 // Destructor
 Deck::~Deck() {}
