@@ -20,7 +20,8 @@ int randomFunc(int i) {
 // Constructors
 Deck::Deck() = default;
 
-Deck::Deck(int setNumber) : setNumber(setNumber) {}
+Deck::Deck(int setNumber) : 
+setNumber(setNumber) {}
 
 // Destructor
 Deck::~Deck() {}
@@ -97,6 +98,8 @@ void Deck::moveAllCards(vector<Card> deck, vector<Card> deckDest)
     // A loop to copy elements of
 	// old vector into new vector
 	// by Iterative method
+
+
    
     deck.swap(deckDest);
 
@@ -143,9 +146,8 @@ Card Deck::getACard(int number)
 {
     Card nthCard;
     if(!deck.empty()) {
-        
-        nthCard = deck[number-1];
-        deck.erase((deck.begin() + number-1));
+        nthCard = deck[number];
+        deck.erase((deck.begin() + number));
     }
     return nthCard;
 }
@@ -156,7 +158,7 @@ Card Deck::lookAtCard(int number)
     Card nthCard;
     if(!deck.empty()) {
         
-        nthCard = deck[number-1];
+        nthCard = deck[number];
     }
 
     return nthCard;
@@ -174,6 +176,10 @@ vector<Card> Deck::getDeck(){
     return deck;
 }
 
+
+void Deck::setDeck(vector<Card> deck){
+    deck = deck;
+}
 
 // Method to shuffle the deck - now working
 void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }

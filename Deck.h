@@ -41,7 +41,7 @@ public:
 	void moveAllCards(vector<Card> deck, vector<Card> deckDest);
 	void addCard(Card card);
 	vector<Card> getDeck();
-	
+	void setDeck(vector<Card> deck);	
 };
 
 #endif
