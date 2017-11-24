@@ -48,16 +48,16 @@ void CardGame::swapDecks(vector<Card> deck1, vector<Card> deck2){
 }
 
 void playGame(){
-	int numberSets, numberPlayers;
+	int numberSets=1, numberPlayers=2;
 
 	cout << "---------------\n";
 	cout << "GAME STARTING \n";
 	cout << "---------------\n";
 	cout <<  "How many sets ?\n";
-	cin >> numberSets;
+	//cin >> numberSets;
 
 	cout <<  "How many players ?\n";
-	cin >> numberPlayers;
+	//cin >> numberPlayers;
 
 
 	//Create new game
@@ -95,15 +95,16 @@ void playGame(){
 	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;	
 	//game.getPlayers.moveAllCards(playersDeck[1],playersDeck[2]);
 	
-	game.playersDeck[1].displayDeck();
-	cout << "After : \n";
-	game.swapDecks(game.playersDeck[1].getDeck(), game.playersDeck[2].getDeck());
-	game.playersDeck[1].displayDeck();
+	//game.playersDeck[1].displayDeck();
+	//cout << "After : \n";
+	//game.swapDecks(game.playersDeck[1].getDeck(), game.playersDeck[2].getDeck());
+	//game.playersDeck[1].displayDeck();
 
 
-	/*	
+	
 	//another for loop needed in here for every hand for(each hand loop)
-	while (game.playersDeck[1].getNumberOfCards()==0||game.playersDeck[2].getNumberOfCards()==0){
+	while (game.playersDeck[1].getNumberOfCards()!=0 || game.playersDeck[2].getNumberOfCards()!=0){
+
 		game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;
 
 		int suit1,rank1,suit2,rank2;
@@ -113,7 +114,12 @@ void playGame(){
 		
 		if (game.shuffledDeck.getNumberOfCards()==0){
 			
-			game.shuffledDeck.moveAllCards(game.shuffledDeck, game);
+			vector<Card> dtemp = game.shuffledDeck.getDeck();
+			vector<Card> dtemp1 = game.playedDeck.getDeck();
+			dtemp.swap(dtemp1);
+			game.shuffledDeck.getDeck() = dtemp;
+			game.playedDeck.getDeck() = dtemp1;
+			//game.shuffledDeck.moveAllCards(game.shuffledDeck, game);
 		}
 		//loop for each player
 		for (int k =0; k<numberPlayers; k++)
@@ -141,7 +147,7 @@ void playGame(){
 	
 		}
 	}			
-	*/
+	
 	// game.displayPlayerDecks();
 	// cout << "Cards left in playeddeck : \n";
 	// game.playedDeck.displayDeck();
@@ -150,8 +156,14 @@ void playGame(){
 	//game.simulateGame();
 
 	//FINISHED
-
+if (game.playersDeck[1].getNumberOfCards()==0)
+cout<<"player 1 wins"<<endl;
+else  if (game.playersDeck[2].getNumberOfCards()==0)
+cout<< "player 2 wins"<<endl;
+else 
+cout<<"error"<<endl;
 }
+
 
 int main(){
 	cout<<"Hello Welcome to the Game!\n";
