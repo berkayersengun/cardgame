@@ -100,23 +100,25 @@ void playGame(){
 	//game.swapDecks(game.playersDeck[1].getDeck(), game.playersDeck[2].getDeck());
 	//game.playersDeck[1].displayDeck();
 
+	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;
+
+	// First card is the one from shuffled deck
+	Card topPlayedCard = game.playedDeck.getDeck()[0];
+	
 
 	int i = 0;
 	//another for loop needed in here for every hand for(each hand loop)
-	while (game.playersDeck[1].getNumberOfCards() != 0 || game.playersDeck[2].getNumberOfCards()!=0){
+	while (game.playersDeck[0].getNumberOfCards() != 0 || game.playersDeck[1].getNumberOfCards()!=0){
+		// new turn
 		i++;
+
+
 
 		if(i == 30){
 			break;
 		}
-
-		game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;
-
-
-
-		//rank2 = game.playedDeck.lookAtCard(1).getRank();
-		//suit2 = game.playedDeck.lookAtCard(1).getSuit();
-
+		// Display the top card after all players played.
+		cout << "Top card : " << topPlayedCard.getRank() << "|" << topPlayedCard.getSuit() << ".\n";
 
 
 		
@@ -140,13 +142,12 @@ void playGame(){
 		
 			//game.shuffledDeck.moveAllCards(game.shuffledDeck, game);
 		}
+
+
 		//loop for each player
 		for (int k = 0; k < numberPlayers; k++){		
 
-			Card topPlayedCard = game.playedDeck.getDeck()[k];
-			cout << "Top card : " << topPlayedCard.getRank() << "|" << topPlayedCard.getSuit() << ".\n";
-
-				//loop for all cards in x player's hand 
+			//loop for all cards in x player's hand 
 			for (int x = 0; x < game.playersDeck[k].getNumberOfCards(); x++){
 				//cout<<"suit is "<<suit<<" rank is "<<rank<<endl;
 				Card playerCard = game.playersDeck[k].lookAtCard(x);
@@ -163,20 +164,31 @@ void playGame(){
 					// If player plays the card, then refresh the top card of the deck
 					topPlayedCard = playerCard;
 
+					// Display how many cards remaining			
+					cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+
+
+					// break for because we don't need to check the other cards of the players
 					break;
 				}
 
-				// if x is the last card, then it means that there was no match, so he has to pick
+				// if x is the last card, then it means that there was no match, so he has to pick a new one
 				if(x == game.playersDeck[k].getNumberOfCards() - 1){
-					cout << "Player " << k + 1 << " picked a card ";
+					cout << "Player " << k + 1 << " picked a card";
 					game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
+
+					// Display how many cards remaining			
+					cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+
 					break;
 				}
 				
+				
+				
 			}
 
-			// Next player's turn
-			cout << "(Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+
+			
 				
 		}
 	}
