@@ -1,3 +1,4 @@
+
 game: Card.o Deck.o CardGame.o
 	g++ -o game Card.o Deck.o CardGame.o -g
 

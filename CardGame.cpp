@@ -14,6 +14,7 @@ numberPlayers(numberPlayers), numberSets(numberSets){}
 // Destructor
 CardGame::~CardGame() {}
 
+
 	
 void CardGame::displayPlayerDecks()
 {
@@ -23,22 +24,66 @@ void CardGame::displayPlayerDecks()
 	}
 }
 
-void playGame()
-{
-	int numberSets=1, numberPlayers=2;
+void displayTitle(){
+	cout << "•#•#•#•#•#•#• Hello and welcome to the game ! •#•#•#•#•#•#•\n";
 
 	cout << "---------------\n";
 	cout << "GAME STARTING \n";
 	cout << "---------------\n";
-	cout <<  "How many sets ?\n";
-	//cin >> numberSets;
 
-	cout <<  "How many players ?\n";
-	//cin >> numberPlayers;
+}
+
+int askNumberOfPlayers(){
+	int players = -1;
+
+
+	while(players <= 0 || players > MAX_NUMBER_PLAYERS){
+		cout <<  "How many players for the game ? (min: 0, max: " << MAX_NUMBER_PLAYERS << ").\n";
+		cin >> players;
+		if(!cin){
+			//Check if input is string not working yet
+			cout << "WTf";
+			players = -1;
+			cin.clear();
+		}
+	}
+	
+	return players;
+}
+
+int askNumberOfSets(){
+	int sets = -1;
+
+	while(sets <= 0 || sets > MAX_NUMBER_SETS){
+		cout <<  "How many sets of cards ? (min: 0, max:" << MAX_NUMBER_SETS << ").\n";
+		cin >> sets;
+		if(!cin){
+			//Check if input is string not working yet
+			cout << "WTf";
+			sets = -1;
+			cin.clear();
+		}
+	}
+
+	return sets;
+}
+
+void playGame()
+{
+	int numberSets, numberPlayers;
+
+	displayTitle();
+	
+	
+	
+	numberSets = askNumberOfSets();
+	
+	numberPlayers = askNumberOfPlayers();
+
 
 	//Create new game
 	CardGame game = CardGame(numberPlayers, numberSets);
-	
+
 	//Create shuffled Deck
 	game.shuffledDeck.createEmptyCardDeck();
 	game.shuffledDeck.createInitialisedCardDeck(numberSets);
@@ -72,7 +117,7 @@ void playGame()
 		
 		
 		// Display the top card after all players played.
-		cout<<"New hand"<<endl;
+		cout << "=============\n Turn nº " << turnCounter + 1 << "\n=============" << endl;
 		cout << "Top card : ";
 		topPlayedCard.displayCard();
 		
@@ -80,7 +125,7 @@ void playGame()
 		//loop for each player
 		for (int k = 0; k < numberPlayers; k++){
 		
-			cout << "Player " <<k+1<<" have " << game.playersDeck[k].getNumberOfCards() << " cards : ";
+			cout << "Player " <<k+1<<" has " << game.playersDeck[k].getNumberOfCards() << " cards : ";
 			game.playersDeck[k].displayDeck();
 					
 			//loop for all cards in x player's hand 
@@ -94,15 +139,16 @@ void playGame()
 					game.playedDeck.addCard(game.playersDeck[k].getACard(x));
 					cout << "Player " << k + 1 << " played ";
 					playerCard.displayCard(); 
-					cout << "Player " <<k+1<<" have " << game.playersDeck[k].getNumberOfCards() << " cards."<<endl;
+					cout << "Player " << k + 1<<" has " << game.playersDeck[k].getNumberOfCards() << " cards." << endl;
 					// If player plays his card, then refresh the top card of the played deck
 					topPlayedCard = playerCard;
-						// Check if the player[k] now has 0 card and end game if true
-					if (game.playersDeck[k].getNumberOfCards()==0){
-						cout<<"Player " << k+1 <<" wins\nGame Over!\n" <<endl;
+					
+					// Check if the player[k] now has 0 card and end game if true
+					if (game.playersDeck[k].getNumberOfCards() == 0){
+						cout << "••• Player " << k + 1 << " wins •••\nGame Over!\n" << endl;
 						exit(1);
 					}
-					cout<<"Top card : ";
+					cout << "Top card : ";
 					topPlayedCard.displayCard();
 										
 				
@@ -124,11 +170,11 @@ void playGame()
 						game.shuffledDeck.shuffleDeck();
 					}
 					game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
-					cout << "Player " << k + 1 << " picked a card from the shuffled deck"<<endl;
+					cout << "Player " << k + 1 << " picked a card from the shuffled deck."<<endl;
 
 					// Display how many cards remaining			
 					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
-					cout<< "Player "<<k+1<<" have "<<game.playersDeck[k].getNumberOfCards()<<" cards : " ;
+					cout<< "Player "<< k + 1 <<" has " << game.playersDeck[k].getNumberOfCards()<<" cards : " ;
 					game.playersDeck[k].displayDeck();
 					
 					break;
@@ -136,16 +182,16 @@ void playGame()
 			}
 		}
 	turnCounter++;
-	cout<<endl;
+	cout << endl;
 	}		
-			cout << "Game ends as a draw, there was no winner" << endl;
+			cout << "Game ends as a draw, there was no winner." << endl;
 		
 	
 }
 
 int main()
 {
-	cout<<"Hello Welcome to the Game!\n";
+
 	playGame();
 }
 
