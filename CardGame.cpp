@@ -68,37 +68,47 @@ void playGame()
 
 	int turnCounter = 0;
 	//another for loop needed in here for every hand for(each hand loop)
-	while (turnCounter != 10){
+	while (turnCounter != 100){
 		
 		
 		// Display the top card after all players played.
-		//cout << "Top card : " << topPlayedCard.getRank() << "|" << topPlayedCard.getSuit() << ".\n";
+		cout<<"New hand"<<endl;
+		cout << "Top card : ";
+		topPlayedCard.displayCard();
+		
 
 		//loop for each player
 		for (int k = 0; k < numberPlayers; k++){
+		
+			cout << "Player " <<k+1<<" have " << game.playersDeck[k].getNumberOfCards() << " cards : ";
+			game.playersDeck[k].displayDeck();
+					
 			//loop for all cards in x player's hand 
 			for (int x = 0; x < game.playersDeck[k].getNumberOfCards(); x++){
 				Card playerCard = game.playersDeck[k].lookAtCard(x);
 				// Check if that card can be played
+				
 
 				if(playerCard.getSuit() == topPlayedCard.getSuit() || playerCard.getRank() == topPlayedCard.getRank()){
 					// Card can be played Add that card to the played Deck and remove the card from player's hand
 					game.playedDeck.addCard(game.playersDeck[k].getACard(x));
-					//cout << "Player " << k + 1 << " played " << playerCard.getRank() << "|" << playerCard.getSuit(); 
-
+					cout << "Player " << k + 1 << " played ";
+					playerCard.displayCard(); 
+					cout << "Player " <<k+1<<" have " << game.playersDeck[k].getNumberOfCards() << " cards."<<endl;
 					// If player plays his card, then refresh the top card of the played deck
 					topPlayedCard = playerCard;
-
-					// Display how many cards are remaining			
-					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
-
-					// Check if the player[k] now has 0 card and end game if true
+						// Check if the player[k] now has 0 card and end game if true
 					if (game.playersDeck[k].getNumberOfCards()==0){
-						cout<<"player " << k+1 <<" wins\nGame Over!\n" <<endl;
+						cout<<"Player " << k+1 <<" wins\nGame Over!\n" <<endl;
 						exit(1);
 					}
+					cout<<"Top card : ";
+					topPlayedCard.displayCard();
+										
+				
 					break;
 				}
+				
 				// if x is the last card, then it means that there was no match, so player[k] has to pick a new card from the shuffled deck
 				if(x == game.playersDeck[k].getNumberOfCards() - 1){
 					// check if the shuffled deck is empty before picking new card
@@ -120,12 +130,13 @@ void playGame()
 					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
 					cout<< "Player "<<k+1<<" have "<<game.playersDeck[k].getNumberOfCards()<<" cards : " ;
 					game.playersDeck[k].displayDeck();
-					cout<<endl;
+					
 					break;
 				}
 			}
 		}
 	turnCounter++;
+	cout<<endl;
 	}		
 			cout << "Game ends as a draw, there was no winner" << endl;
 		
