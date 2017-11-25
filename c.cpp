@@ -16,13 +16,6 @@ numberPlayers(numberPlayers), numberSets(numberSets){}
 CardGame::~CardGame() {}
 
 
-void CardGame::setPlayers(int numberPlayers){
-	//numberPlayers = numberPlayers;
-}
-
-void CardGame::setNumberSets(int numberSets){
-	//numberSets = numberSets;
-}
 
 void CardGame::displayPlayerDecks(){
 	for(int i = 0; i < numberPlayers; i++){
@@ -31,21 +24,10 @@ void CardGame::displayPlayerDecks(){
 	}
 }
 
-void CardGame::simulateGame(){
-	// for(int i = 0; i < gameDeck.size(); i++){
-		
-	// }
-}
 
 
-void createShuffledDeck(){
-	
-}
 
 
-void CardGame::swapDecks(vector<Card> deck1, vector<Card> deck2){
-	deck1.swap(deck2);
-}
 
 void playGame(){
 	int numberSets, numberPlayers;
@@ -104,20 +86,15 @@ void playGame(){
 		rank2 = game.playedDeck.lookAtCard(1).getRank();
 		suit2 = game.playedDeck.lookAtCard(1).getSuit();
 
-		if (game.shuffledDeck.getNumberOfCards()==0){
-			
-			game.shuffledDeck=game.playedDeck;
-			//game.playedDeck.createEmptyCardDeck();
-			//auto iter = game.shuffledDeck.lookAtCard(0);
- 				while(game.playedDeck.getNumberOfCards()!=0)
-				{
-					
+		if (game.shuffledDeck.getNumberOfCards() == 0){
+			game.shuffledDeck = game.playedDeck;
+			game.shuffledDeck.getTopCard();
+
+			//removes 2nd card till one card left. which we will have first card remain in the deck		
+			while(game.playedDeck.getNumberOfCards() != 1){
+				game.playedDeck.getACard(1);
 				
-					game.playedDeck.getTopCard();
-					//iter++;
-				}
-	
-			//game.shuffledDeck.moveAllCards(game.shuffledDeck, game);
+			}
 		}
 		//loop for each player
 		for (int k =0; k<numberPlayers; k++)
