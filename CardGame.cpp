@@ -144,16 +144,26 @@ void playGame(){
 		}
 
 
+
 		//loop for each player
-		for (int k = 0; k < numberPlayers; k++){		
+		for (int k = 0; k < numberPlayers; k++){
+
+		/*if(game.playersDeck[k].getNumberOfCards()==0){
+					break;
+				}*/		
 
 			//loop for all cards in x player's hand 
 			for (int x = 0; x < game.playersDeck[k].getNumberOfCards(); x++){
+
+
+				
+               
+
 				//cout<<"suit is "<<suit<<" rank is "<<rank<<endl;
 				Card playerCard = game.playersDeck[k].lookAtCard(x);
-
-				// Check if that card can be played
-				if(playerCard.getSuit() == topPlayedCard.getSuit() || playerCard.getRank() == topPlayedCard.getRank()){
+                
+                	// Check if that card can be played
+					if(playerCard.getSuit() == topPlayedCard.getSuit() || playerCard.getRank() == topPlayedCard.getRank()){
 					// Card can be played
 					//Add that card to the played Deck and remove the card from player's hand
 					game.playedDeck.addCard(game.playersDeck[k].getACard(x));
@@ -166,14 +176,43 @@ void playGame(){
 
 					// Display how many cards remaining			
 					cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+					
 
+							if (game.playersDeck[0].getNumberOfCards()==0){
 
-					// break for because we don't need to check the other cards of the players
-					break;
-				}
+									cout<<"player 1 wins"<<endl;
 
-				// if x is the last card, then it means that there was no match, so he has to pick a new one
-				if(x == game.playersDeck[k].getNumberOfCards() - 1){
+									game.terminateGame();
+
+							}
+							else  if (game.playersDeck[1].getNumberOfCards()==0){
+
+									cout<< "player 2 wins"<<endl;
+
+									game.terminateGame();
+
+							}
+							else {
+									break; // break for because we don't need to check the other cards of the players
+									//cout<<"error"<<endl;
+							}
+
+				    }
+
+                     	
+
+                     	//else {
+
+                     		//continue;
+							// break for because we don't need to check the other cards of the players
+							//break;
+
+						//}	
+
+					
+
+					// if x is the last card, then it means that there was no match, so he has to pick a new one
+					if(x == game.playersDeck[k].getNumberOfCards() - 1){
 					cout << "Player " << k + 1 << " picked a card";
 					game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
 
@@ -181,17 +220,17 @@ void playGame(){
 					cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
 
 					break;
-				}
+					}
 				
 				
 				
 			}
 
-
 			
 				
 		}
-	}
+	}	
+
 	
 	// game.displayPlayerDecks();
 	// cout << "Cards left in playeddeck : \n";
@@ -201,14 +240,33 @@ void playGame(){
 	//game.simulateGame();
 
 	//FINISHED
-if (game.playersDeck[1].getNumberOfCards()==0)
-cout<<"player 1 wins"<<endl;
-else  if (game.playersDeck[2].getNumberOfCards()==0)
-cout<< "player 2 wins"<<endl;
-else 
-cout<<"error"<<endl;
+	/*
+	if (game.playersDeck[1].getNumberOfCards()==0){
+
+		cout<<"player 1 wins"<<endl;
+
+		game.terminateGame();
+
+	}
+	else  if (game.playersDeck[2].getNumberOfCards()==0){
+
+		cout<< "player 2 wins"<<endl;
+
+		game.terminateGame();
+
+	}
+	else {
+		cout<<"error"<<endl;
+	}
+	*/
+
 }
 
+void CardGame::terminateGame(){
+cout <<"Game Over!\n";
+exit(1);
+
+}
 
 int main(){
 	cout<<"Hello Welcome to the Game!\n";

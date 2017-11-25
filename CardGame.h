@@ -27,6 +27,8 @@ public:
 
 	void swapDecks(vector<Card> deck1, vector<Card> deck2);
 
+	void terminateGame();
+
 	vector<Deck> playersDeck;
 
 	Deck shuffledDeck;

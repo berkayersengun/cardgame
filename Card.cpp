@@ -1,6 +1,6 @@
 /*
 
-Cardgame by Berkey, Johnson, Luise and Vasanth
+Cardgame by Berkey, Johnson, Luis and Vasanth
 
 Group project for Ed5021/EE6411 November,2017.
 
