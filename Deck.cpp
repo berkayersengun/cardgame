@@ -58,8 +58,7 @@ void Deck::createInitialisedCardDeck(int setNumber)
 //initialises the deck created in the Deck::createInitialisedCardDeck(int setNumber)
 void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
 {   
-    
-    if(setNumber * 52 == deckToInitialise.deck.size())
+    if((setNumber * deckSize) == static_cast<int>(deckToInitialise.deck.size()))
     {   
         deckToInitialise.displayDeck();
         cout<<"This is a bullshit method." << endl;
@@ -137,6 +136,12 @@ void Deck::setDeck(vector<Card> deck){
 void Deck::shuffleDeck() 
 { 
     random_shuffle(deck.begin(), deck.end(), randomFunc); 
+}
+
+void Deck::moveAllCards(Deck copyDeck)
+{
+    deck.swap(copyDeck.deck);
+    copyDeck.setNumber = setNumber;
 }
 
 

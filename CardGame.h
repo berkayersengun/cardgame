@@ -4,7 +4,8 @@
 using namespace std;
 
 
-class CardGame {
+class CardGame 
+{
 public:
 	CardGame();
 
@@ -17,8 +18,6 @@ public:
 	void displayPlayerDecks();
 
 	void playGame();
-
-	void terminateGame();
 
 	vector<Deck> playersDeck;
 
