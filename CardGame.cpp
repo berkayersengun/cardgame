@@ -116,10 +116,10 @@ void playGame()
 			}
 		}
 	turnCounter++;
-		
+	}		
 			cout << "Game ends as a draw, there was no winner" << endl;
 		
-	}	
+	
 }
 
 int main()
