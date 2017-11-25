@@ -12,20 +12,13 @@ public:
 
 	~CardGame();
 
-	void setPlayers(int numberPlayers);
-	void setNumberSets(int numberSets);
-
 	void getPlayers();
 
 	void displayPlayerDecks();
 
-	void simulateGame();
-
-	void createShuffledDeck();
-
 	void playGame();
 
-	void swapDecks(vector<Card> deck1, vector<Card> deck2);
+	void terminateGame();
 
 	vector<Deck> playersDeck;
 
