@@ -60,18 +60,16 @@ void playGame()
 			game.playersDeck[i].addCard(game.shuffledDeck.getTopCard());
 		}
 	}
+	
 	// First card is the one from shuffled deck
 	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;
 	Card topPlayedCard = game.playedDeck.getDeck()[0];
 
 	int turnCounter = 0;
 	//another for loop needed in here for every hand for(each hand loop)
-	while (game.playersDeck[0].getNumberOfCards() != 0 || game.playersDeck[1].getNumberOfCards()!=0){
-		turnCounter++;
-		if(turnCounter == 30){
-			cout << "Game ends as a draw, there was no winner" << endl;
-			break;
-		}
+	while (turnCounter != 30){
+		
+		
 		// Display the top card after all players played.
 		cout << "Top card : " << topPlayedCard.getRank() << "|" << topPlayedCard.getSuit() << ".\n";
 
@@ -117,6 +115,10 @@ void playGame()
 				}
 			}
 		}
+	turnCounter++;
+		
+			cout << "Game ends as a draw, there was no winner" << endl;
+		
 	}	
 }
 
