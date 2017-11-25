@@ -33,12 +33,10 @@ public:
 	void createEmptyCardDeck();
 	void createInitialisedCardDeck(int setNumber);
 	void initialiseCardDeck(int setNumber,Deck duck);
-	void deleteCardDeck(Deck duck);
 	int const getNumberOfCards();
 	Card getTopCard();
 	Card getACard(int number);
 	Card lookAtCard(int number);
-	void moveAllCards(vector<Card> deck, vector<Card> deckDest);
 	void addCard(Card card);
 	vector<Card> getDeck();
 	void setDeck(vector<Card> deck);	

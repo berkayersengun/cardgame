@@ -16,7 +16,6 @@ int randomFunc(int i) {
 	return rand() % i;
 }
 
-
 // Constructors
 Deck::Deck() = default;
 
@@ -33,8 +32,6 @@ void Deck::createEmptyCardDeck()
 {
     vector<Card> deck; 
 }
-
-
 
 // Lead initilised deck set up to create a single 52 card deck for now
 void Deck::createInitialisedCardDeck(int setNumber)
@@ -58,7 +55,6 @@ void Deck::createInitialisedCardDeck(int setNumber)
 	
 }
 
-
 //initialises the deck created in the Deck::createInitialisedCardDeck(int setNumber)
 void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
 {   
@@ -75,52 +71,10 @@ void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
     
 }
 
-void Deck::deleteCardDeck(Deck deckToDelete)
-{	 
-    // auto it= deckToDelete.deck.begin();
-    // while(it != deckToDelete.deck.end())
-    // it = deckToDelete.deck.erase(it);
-
-
-   vector<Card>().swap(deckToDelete.deck);
-
-    //then destructor of deckToDelete ??
-}
-
 int const Deck::getNumberOfCards()
 {
-	//return deckTemp.size(); ;
 	return deck.size();
 };
-
-void Deck::moveAllCards(vector<Card> deck, vector<Card> deckDest)
-{
-    // A loop to copy elements of
-	// old vector into new vector
-	// by Iterative method
-
-
-   
-    deck.swap(deckDest);
-
-    
-    
-    
-   
-/*
-	cout << "Old vector elements are : "<<endl;
-	for (int i=0; i<deck.size(); i++){
-		cout << deck[i] << " ";
-	cout << endl;
-    }
-	cout << "New vector elements are : "<<endl;
-	for (int i=0; i<deckTemp.size(); i++){
-		cout << deckTemp[i] << " ";
-    cout<< endl;
-    }
-    */
-}
-
 
 // Prints of the current deck of cards
 void Deck::displayDeck()
@@ -160,7 +114,6 @@ Card Deck::lookAtCard(int number)
         
         nthCard = deck[number];
     }
-
     return nthCard;
 }
 
@@ -176,32 +129,15 @@ vector<Card> Deck::getDeck(){
     return deck;
 }
 
-
 void Deck::setDeck(vector<Card> deck){
     deck = deck;
 }
 
 // Method to shuffle the deck - now working
-void Deck::shuffleDeck() { random_shuffle(deck.begin(), deck.end(), randomFunc); }
-
-
-
-// int main() {
-// 	Deck newDeck(1);
-//     newDeck.createEmptyCardDeck();
-//     int setno = 1; //how many sets
-// 	newDeck.createInitialisedCardDeck(setno);
-//     newDeck.initialiseCardDeck(setno, newDeck);
-//     cout << " cards : " << newDeck.getNumberOfCards() << "\n";
-
-//     newDeck = newDeck.deleteCardDeck(newDeck);
-
-//     cout << " cards : " << newDeck.getNumberOfCards() << "\n";
-	
-
-
-// }
-
+void Deck::shuffleDeck() 
+{ 
+    random_shuffle(deck.begin(), deck.end(), randomFunc); 
+}
 
 
 

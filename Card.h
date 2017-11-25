@@ -26,15 +26,10 @@ public:
 	// display the card
 	void displayCard();
 
-
-	
 	friend ostream& operator<<(ostream&, const Card &); // Stream extraction overloading function prototype
-	
-
 private:
 	Rank rank;
 	Suit suit;
 
 };
-
 #endif 

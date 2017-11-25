@@ -1,10 +1,11 @@
-/*
+////////////////////////////////////////////////
+//
+// Cardgame 
+// Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
+// Group 4 project for Ed5021/EE6411 
+// Date: November,2017.
+/////////////////////////////////////////////////
 
-Cardgame by Berkey, Johnson, Luis and Vasanth
-
-Group project for Ed5021/EE6411 November,2017.
-
-*/
 #include <iostream> //Including standard libraries for input and output functions
 #include <cstdlib>	//Including standard general utilities libraries. Particularly for using srand function to shuffle cards
 #include <vector>	//Dynamic memmory allocation is implemented through vector as the data structure 
@@ -18,8 +19,6 @@ Card::Card(Rank rank, Suit suit) : rank(rank), suit(suit) {}
 
 // destructor to create a card, setting the suit and rank
 Card::~Card() {}
-
-
 
 // set an existing card to a particular value
 void Card::setCard(Rank rank, Suit suit)
@@ -104,11 +103,13 @@ ostream& operator<<(ostream& os, const Card& c)
 	return os;
 }
 
-
-void Card::displayCard() //Funtion to display the card using this pointer 
-						//called by reference of the data structure "vector"
+//Funtion to display the card using this pointer
+//called by reference of the data structure "vector"
+void Card::displayCard() 
+						
 {
-	cout << *this << endl; //Using this pointer to display sequentially the cards in the deck
+	//Using this pointer to display sequentially the cards in the deck
+	cout << *this << endl; 
 }
 
 
