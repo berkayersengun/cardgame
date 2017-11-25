@@ -41,7 +41,7 @@ ostream& operator<<(ostream& os, const Card& c)
 {
 	Rank r = c.rank;
 	Suit s = c.suit;
-	os << "Rank : ";
+	//os << "Rank : ";
 	switch (r) {
 	case Two:
 		os << c.rank;
@@ -84,7 +84,7 @@ ostream& operator<<(ostream& os, const Card& c)
 		break;
 	}
 
-	os << " Suit : ";
+	//os << " Suit : ";
 	switch (s) {
 	case SPA:
 		os << 'S';

@@ -79,9 +79,12 @@ int const Deck::getNumberOfCards()
 void Deck::displayDeck()
 {
         //auto=vector<Card>::iterator
-	for (auto iter = deck.begin(); iter != deck.cend(); ++iter) {
-		cout << *iter << "\n";
+        auto iter=deck.begin();
+	for ( iter = deck.begin(); iter != deck.cend()-1; ++iter) {
+		cout << *iter ;
+        cout<<",";
 	}
+    cout<<*iter<<endl;
 }
 
 // Return and remove the top card of the deck
@@ -139,10 +142,10 @@ void Deck::shuffleDeck()
 }
 
 void Deck::moveAllCards(Deck copyDeck)
-{
+ {
     deck.swap(copyDeck.deck);
     copyDeck.setNumber = setNumber;
-}
+ }
 
 
 

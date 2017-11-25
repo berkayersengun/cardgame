@@ -75,7 +75,9 @@ void playGame(){
 	}
 	
 	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;	
-	//game.getPlayers.moveAllCards(playersDeck[1],playersDeck[2]);
+
+
+
 	
 	//another for loop needed in here for every hand for(each hand loop)
 	while (game.playersDeck[1].getNumberOfCards()!=0 || game.playersDeck[2].getNumberOfCards()!=0){

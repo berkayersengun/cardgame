@@ -14,6 +14,7 @@ numberPlayers(numberPlayers), numberSets(numberSets){}
 // Destructor
 CardGame::~CardGame() {}
 
+	
 void CardGame::displayPlayerDecks()
 {
 	for(int i = 0; i < numberPlayers; i++){
@@ -24,7 +25,7 @@ void CardGame::displayPlayerDecks()
 
 void playGame()
 {
-	int numberSets=1, numberPlayers=4;
+	int numberSets=1, numberPlayers=2;
 
 	cout << "---------------\n";
 	cout << "GAME STARTING \n";
@@ -67,11 +68,11 @@ void playGame()
 
 	int turnCounter = 0;
 	//another for loop needed in here for every hand for(each hand loop)
-	while (turnCounter != 30){
+	while (turnCounter != 10){
 		
 		
 		// Display the top card after all players played.
-		cout << "Top card : " << topPlayedCard.getRank() << "|" << topPlayedCard.getSuit() << ".\n";
+		//cout << "Top card : " << topPlayedCard.getRank() << "|" << topPlayedCard.getSuit() << ".\n";
 
 		//loop for each player
 		for (int k = 0; k < numberPlayers; k++){
@@ -83,13 +84,13 @@ void playGame()
 				if(playerCard.getSuit() == topPlayedCard.getSuit() || playerCard.getRank() == topPlayedCard.getRank()){
 					// Card can be played Add that card to the played Deck and remove the card from player's hand
 					game.playedDeck.addCard(game.playersDeck[k].getACard(x));
-					cout << "Player " << k + 1 << " played " << playerCard.getRank() << "|" << playerCard.getSuit(); 
+					//cout << "Player " << k + 1 << " played " << playerCard.getRank() << "|" << playerCard.getSuit(); 
 
 					// If player plays his card, then refresh the top card of the played deck
 					topPlayedCard = playerCard;
 
 					// Display how many cards are remaining			
-					cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
 
 					// Check if the player[k] now has 0 card and end game if true
 					if (game.playersDeck[k].getNumberOfCards()==0){
@@ -102,15 +103,24 @@ void playGame()
 				if(x == game.playersDeck[k].getNumberOfCards() - 1){
 					// check if the shuffled deck is empty before picking new card
 					if (game.shuffledDeck.getNumberOfCards() == 0){
+						
 						game.shuffledDeck.moveAllCards(game.playedDeck);
+						game.shuffledDeck.getTopCard(); 
+						while(game.playedDeck.getNumberOfCards()!= 1){
+									game.playedDeck.getACard(1);
+									
+						}
 						// Shuffle Cards after swapping
 						game.shuffledDeck.shuffleDeck();
 					}
 					game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
-					cout << "Player " << k + 1 << " picked a card";
+					cout << "Player " << k + 1 << " picked a card from the shuffled deck"<<endl;
 
 					// Display how many cards remaining			
-					cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
+					cout<< "Player "<<k+1<<" have "<<game.playersDeck[k].getNumberOfCards()<<" cards : " ;
+					game.playersDeck[k].displayDeck();
+					cout<<endl;
 					break;
 				}
 			}
