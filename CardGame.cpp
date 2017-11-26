@@ -1,3 +1,11 @@
+////////////////////////////////////////////////
+//
+// Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
+// Cardgame.cpp - class to simulate the actually card game
+// Group 4 project for ED5021/EE6411 
+// Date: 26 November, 2017.
+/////////////////////////////////////////////////
+
 #include <string>
 #include <iostream>
 #include "Deck.h"
@@ -8,14 +16,14 @@
 
 using namespace std;
 
+// Constructor
 CardGame::CardGame(int numberPlayers, int numberSets) : 
 numberPlayers(numberPlayers), numberSets(numberSets){}
 
 // Destructor
 CardGame::~CardGame() {}
 
-
-	
+// Displays the card for each player
 void CardGame::displayPlayerDecks()
 {
 	for(int i = 0; i < numberPlayers; i++){
@@ -24,19 +32,18 @@ void CardGame::displayPlayerDecks()
 	}
 }
 
-void displayTitle(){
+void displayTitle()
+{
 	cout << "•#•#•#•#•#•#• Hello and welcome to the game ! •#•#•#•#•#•#•\n";
 
 	cout << "---------------\n";
 	cout << "GAME STARTING \n";
 	cout << "---------------\n";
-
 }
-
-int askNumberOfPlayers(){
+// Input number of player
+int askNumberOfPlayers()
+{
 	int players = -1;
-
-
 	while(players <= 0 || players > MAX_NUMBER_PLAYERS){
 		cout <<  "How many players for the game ? (min: 0, max: " << MAX_NUMBER_PLAYERS << ").\n";
 		cin >> players;
@@ -47,15 +54,15 @@ int askNumberOfPlayers(){
 			cin.clear();
 		}
 	}
-	
 	return players;
 }
-
-int askNumberOfSets(){
+// input number of sets to use in the game
+int askNumberOfSets()
+{
 	int sets = -1;
 
 	while(sets <= 0 || sets > MAX_NUMBER_SETS){
-		cout <<  "How many sets of cards ? (min: 0, max:" << MAX_NUMBER_SETS << ").\n";
+		cout <<  "How many sets of cards ? (min: 1, max:" << MAX_NUMBER_SETS << ").\n";
 		cin >> sets;
 		if(!cin){
 			//Check if input is string not working yet
@@ -64,7 +71,6 @@ int askNumberOfSets(){
 			cin.clear();
 		}
 	}
-
 	return sets;
 }
 
@@ -73,13 +79,10 @@ void playGame()
 	int numberSets, numberPlayers;
 
 	displayTitle();
-	
-	
-	
+
 	numberSets = askNumberOfSets();
 	
 	numberPlayers = askNumberOfPlayers();
-
 
 	//Create new game
 	CardGame game = CardGame(numberPlayers, numberSets);
@@ -102,7 +105,6 @@ void playGame()
 	// Give each player 7 cards <-- Put that in function later
 	for(int j = 0; j < 7; j++){
 		for(int i = 0; i < numberPlayers; i++){
-		
 			game.playersDeck[i].addCard(game.shuffledDeck.getTopCard());
 		}
 	}
@@ -114,8 +116,7 @@ void playGame()
 	int turnCounter = 0;
 	//another for loop needed in here for every hand for(each hand loop)
 	while (turnCounter != 100){
-		
-		
+
 		// Display the top card after all players played.
 		cout << "=============\n Turn nº " << turnCounter + 1 << "\n=============" << endl;
 		cout << "Top card : ";
@@ -151,7 +152,6 @@ void playGame()
 					cout << "Top card : ";
 					topPlayedCard.displayCard();
 										
-				
 					break;
 				}
 				
@@ -184,14 +184,11 @@ void playGame()
 	turnCounter++;
 	cout << endl;
 	}		
-			cout << "Game ends as a draw, there was no winner." << endl;
-		
-	
+	cout << "Game ends as a draw, there was no winner." << endl;
 }
 
 int main()
 {
-
 	playGame();
 }
 
