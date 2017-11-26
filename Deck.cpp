@@ -69,7 +69,6 @@ void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
     if((setNumber * deckSize) == static_cast<int>(deckToInitialise.deck.size()))
     {   
         deckToInitialise.displayDeck();
-        cout<<"This is a bullshit method." << endl;
         //this might be for only checking purposes cause we have the same shit above
         //Post: deck contains setNum ordered sets of cards or an error is indicated if sufficient resources not available.
     }
@@ -86,13 +85,14 @@ int const Deck::getNumberOfCards()
 // Prints of the current deck of cards
 void Deck::displayDeck()
 {
-        //auto=vector<Card>::iterator
+    if (deck.size() != 0){
         auto iter=deck.begin();
-	for ( iter = deck.begin(); iter != deck.cend()-1; ++iter) {
-		cout << *iter ;
-        cout<<",";
-	}
-    cout<<*iter<<endl;
+        for ( iter = deck.begin(); iter != deck.cend()-1; ++iter) {
+            cout << *iter ;
+            cout<<",";
+        }
+        cout<<*iter<<endl;
+    } else cout << "Card Deck is empty\n";
 }
 
 // Return and remove the top card of the deck
@@ -155,8 +155,11 @@ void Deck::moveAllCards(Deck copyDeck)
     copyDeck.setNumber = setNumber;
  }
 
-
-
+void Deck:: deleteCardDeck() 
+{
+    deck.clear();
+    deck.shrink_to_fit();
+}
 
 
 

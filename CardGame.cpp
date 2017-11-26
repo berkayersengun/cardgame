@@ -181,5 +181,10 @@ int main()
 	}
 	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || (numberSets==2 && numberPlayers>14) );
 	CardGame game = CardGame(numberPlayers, numberSets);
-	game.playGame();
+	//game.playGame();
+	game.shuffledDeck.createInitialisedCardDeck(1);
+    game.shuffledDeck.displayDeck();
+	game.shuffledDeck.deleteCardDeck();
+	game.shuffledDeck.displayDeck();
+	cout << game.shuffledDeck.getNumberOfCards() << endl;
 }
