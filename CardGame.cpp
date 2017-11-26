@@ -1,3 +1,11 @@
+////////////////////////////////////////////////
+//
+// Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
+// Cardgame.cpp - class to simulate the actually card game
+// Group 4 project for ED5021/EE6411 
+// Date: 26 November, 2017.
+/////////////////////////////////////////////////
+
 #include <string>
 #include <iostream>
 #include "Deck.h"
@@ -9,13 +17,14 @@
 
 using namespace std;
 
+// Constructor
 CardGame::CardGame(int numberPlayers, int numberSets) : 
 numberPlayers(numberPlayers), numberSets(numberSets){}
 
 // Destructor
 CardGame::~CardGame() {}
 
-	
+// Displays the card for each player
 void CardGame::displayPlayerDecks()
 {
 	for(int i = 0; i < numberPlayers; i++){
@@ -24,8 +33,10 @@ void CardGame::displayPlayerDecks()
 	}
 }
 
-void playGame()
+// Give each player 7 cards 
+void CardGame::dealCards()
 {
+<<<<<<< HEAD
 	int numberSets=1, numberPlayers=2, flag;
 	string numberSetsInput, numberPlayersInput;
 
@@ -75,44 +86,49 @@ void playGame()
 			}
 			
 		}	
-
-	//Create new game
-	CardGame game = CardGame(numberPlayers, numberSets);
-	
-	//Create shuffled Deck
-	game.shuffledDeck.createEmptyCardDeck();
-	game.shuffledDeck.createInitialisedCardDeck(numberSets);
-	game.shuffledDeck.shuffleDeck();
-
-	//Create empty deck for played cards.
-	game.playedDeck.createEmptyCardDeck();
-	// Create n decks (where n are number of players) 
-	for(int i = 0; i < numberPlayers; i++){
-		Deck playersDeck = Deck();
-		playersDeck.createEmptyCardDeck();
-
-		game.playersDeck.push_back(playersDeck);
-	}
-
-	// Give each player 7 cards <-- Put that in function later
+=======
 	for(int j = 0; j < 7; j++){
 		for(int i = 0; i < numberPlayers; i++){
-		
-			game.playersDeck[i].addCard(game.shuffledDeck.getTopCard());
+			playersDeck[i].addCard(shuffledDeck.getTopCard());
 		}
 	}
+}
+>>>>>>> b96fbc770cb296cf63243eb252dc07e026547328
+
+// Create a vector to collect store the card decks of all players in the game
+void CardGame::createPlayersDeck()
+{
+	for(int i = 0; i < numberPlayers; i++){
+		Deck newPlayerDeck = Deck();
+		newPlayerDeck.createEmptyCardDeck();
+		playersDeck.push_back(newPlayerDeck);
+	}
+}
+void CardGame::playGame()
+{
+	//Create shuffled Deck
+	shuffledDeck.createEmptyCardDeck();
+	shuffledDeck.createInitialisedCardDeck(numberSets);
+	shuffledDeck.shuffleDeck();
+
+	//Create empty deck for played cards.
+	playedDeck.createEmptyCardDeck();
+	// Create n decks (where n are number of players) 
+	createPlayersDeck();
+
+	// Give each player 7 cards
+	dealCards();
 	
 	// First card is the one from shuffled deck
-	game.playedDeck.addCard(game.shuffledDeck.getTopCard()) ;
-	Card topPlayedCard = game.playedDeck.getDeck()[0];
+	playedDeck.addCard(shuffledDeck.getTopCard()) ;
+	Card topPlayedCard = playedDeck.getDeck()[0];
 
 	int turnCounter = 0;
 	//another for loop needed in here for every hand for(each hand loop)
 	while (turnCounter != 100){
-		
-		
+
 		// Display the top card after all players played.
-		cout<<"New hand"<<endl;
+		cout << "=============\n Turn nº " << turnCounter + 1 << "\n=============" << endl;
 		cout << "Top card : ";
 		topPlayedCard.displayCard();
 		
@@ -120,73 +136,84 @@ void playGame()
 		//loop for each player
 		for (int k = 0; k < numberPlayers; k++){
 		
-			cout << "Player " <<k+1<<" have " << game.playersDeck[k].getNumberOfCards() << " cards : ";
-			game.playersDeck[k].displayDeck();
+			cout << "Player " <<k+1<<" has " << playersDeck[k].getNumberOfCards() << " card(s) : ";
+			playersDeck[k].displayDeck();
 					
 			//loop for all cards in x player's hand 
-			for (int x = 0; x < game.playersDeck[k].getNumberOfCards(); x++){
-				Card playerCard = game.playersDeck[k].lookAtCard(x);
+			for (int x = 0; x < playersDeck[k].getNumberOfCards(); x++){
+				Card playerCard = playersDeck[k].lookAtCard(x);
 				// Check if that card can be played
 				
 
 				if(playerCard.getSuit() == topPlayedCard.getSuit() || playerCard.getRank() == topPlayedCard.getRank()){
 					// Card can be played Add that card to the played Deck and remove the card from player's hand
-					game.playedDeck.addCard(game.playersDeck[k].getACard(x));
+					playedDeck.addCard(playersDeck[k].getACard(x));
 					cout << "Player " << k + 1 << " played ";
 					playerCard.displayCard(); 
-					cout << "Player " <<k+1<<" have " << game.playersDeck[k].getNumberOfCards() << " cards."<<endl;
+					cout << "Player " << k + 1<<" has " << playersDeck[k].getNumberOfCards() << " card(s)." << endl;
 					// If player plays his card, then refresh the top card of the played deck
 					topPlayedCard = playerCard;
-						// Check if the player[k] now has 0 card and end game if true
-					if (game.playersDeck[k].getNumberOfCards()==0){
-						cout<<"Player " << k+1 <<" wins\nGame Over!\n" <<endl;
+					
+					// Check if the player[k] now has 0 card and end game if true
+					if (playersDeck[k].getNumberOfCards() == 0){
+						cout << "••• Player " << k + 1 << " wins •••\nGame Over!\n" << endl;
 						exit(1);
 					}
-					cout<<"Top card : ";
+					cout << "Top card : ";
 					topPlayedCard.displayCard();
 										
-				
 					break;
 				}
 				
 				// if x is the last card, then it means that there was no match, so player[k] has to pick a new card from the shuffled deck
-				if(x == game.playersDeck[k].getNumberOfCards() - 1){
+				if(x == playersDeck[k].getNumberOfCards() - 1){
 					// check if the shuffled deck is empty before picking new card
-					if (game.shuffledDeck.getNumberOfCards() == 0){
+					if (shuffledDeck.getNumberOfCards() == 0){
 						
-						game.shuffledDeck.moveAllCards(game.playedDeck);
-						game.shuffledDeck.getTopCard(); 
-						while(game.playedDeck.getNumberOfCards()!= 1){
-									game.playedDeck.getACard(1);
+						shuffledDeck.moveAllCards(playedDeck);
+						shuffledDeck.getTopCard(); 
+						while(playedDeck.getNumberOfCards()!= 1){
+									playedDeck.getACard(1);
 									
 						}
 						// Shuffle Cards after swapping
-						game.shuffledDeck.shuffleDeck();
+						shuffledDeck.shuffleDeck();
 					}
-					game.playersDeck[k].addCard(game.shuffledDeck.getTopCard());
-					cout << "Player " << k + 1 << " picked a card from the shuffled deck"<<endl;
+					playersDeck[k].addCard(shuffledDeck.getTopCard());
+					cout << "Player " << k + 1 << " picked a card from the shuffled deck."<<endl;
 
 					// Display how many cards remaining			
 					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
-					cout<< "Player "<<k+1<<" have "<<game.playersDeck[k].getNumberOfCards()<<" cards : " ;
-					game.playersDeck[k].displayDeck();
+					cout<< "Player "<< k + 1 <<" has " << playersDeck[k].getNumberOfCards()<<" cards : " ;
+					playersDeck[k].displayDeck();
 					
 					break;
 				}
 			}
 		}
 	turnCounter++;
-	cout<<endl;
+	cout << endl;
 	}		
-			cout << "Game ends as a draw, there was no winner" << endl;
-		
-	
+	cout << "Game ends as a draw, there was no winner." << endl;
 }
 
 int main()
 {
-	cout<<"Hello Welcome to the Game!\n";
-	playGame();
+	int numberSets, numberPlayers;
+	cout << "•#•#•#•#•#•#• Hello and welcome to the game ! •#•#•#•#•#•#•\n";
+	cout << "---------------\nGAME STARTING\n---------------\n";
+	
+	cout <<  "How many sets of cards ? (min: 1, max:" << MAX_NUMBER_SETS << ").\n";
+	cin >> numberSets;
+	if (numberSets < 1 || numberSets > MAX_NUMBER_SETS){
+		cout << "Number of Sets is outside allowed range, please renter" << endl;
+	}
+	cout <<  "How many players in the game ? (min: 2, max:" << MAX_NUMBER_PLAYERS << ").\n";
+	cin >> numberPlayers;
+	if (numberPlayers < 2 || numberPlayers > MAX_NUMBER_PLAYERS){
+		cout << "Number of Players is outside allowed range, please renter" << endl;
+	}
+
+	CardGame game = CardGame(numberPlayers, numberSets);
+	game.playGame();
 }
-
-

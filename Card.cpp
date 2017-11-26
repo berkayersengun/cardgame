@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////
 //
-// Cardgame 
 // Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
-// Group 4 project for Ed5021/EE6411 
-// Date: November,2017.
+// Group 4 project for ED5021/EE6411 
+// Date: 26 November,2017.
+// Card.cpp - class modelling a single card defined by suit and rank
 /////////////////////////////////////////////////
 
-#include <iostream> //Including standard libraries for input and output functions
+#include <iostream> 
 #include <cstdlib>	//Including standard general utilities libraries. Particularly for using srand function to shuffle cards
 #include <vector>	//Dynamic memmory allocation is implemented through vector as the data structure 
 #include "Card.h"	//Including header files with class card
@@ -105,8 +105,7 @@ ostream& operator<<(ostream& os, const Card& c)
 
 //Funtion to display the card using this pointer
 //called by reference of the data structure "vector"
-void Card::displayCard() 
-						
+void Card::displayCard()					
 {
 	//Using this pointer to display sequentially the cards in the deck
 	cout << *this << endl; 
