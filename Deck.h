@@ -34,6 +34,7 @@ public:
 	void createInitialisedCardDeck(int setNumber);
 	void initialiseCardDeck(int setNumber,Deck duck);
 	void moveAllCards(Deck copyDeck);
+	void deleteCardDeck();
 	int const getNumberOfCards();
 	Card getTopCard();
 	Card getACard(int number);

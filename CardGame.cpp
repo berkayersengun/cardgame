@@ -162,5 +162,10 @@ int main()
 	}
 
 	CardGame game = CardGame(numberPlayers, numberSets);
-	game.playGame();
+	//game.playGame();
+	game.shuffledDeck.createInitialisedCardDeck(1);
+    game.shuffledDeck.displayDeck();
+	game.shuffledDeck.deleteCardDeck();
+	game.shuffledDeck.displayDeck();
+	cout << game.shuffledDeck.getNumberOfCards() << endl;
 }
