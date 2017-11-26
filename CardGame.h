@@ -24,21 +24,20 @@ public:
 
 	~CardGame();
 
-	void getPlayers();
-
 	void displayPlayerDecks();
 
 	void playGame();
 
-	void displayTitle();
+	void dealCards();
 
-	int askNumberOfPlayers();
+	void createPlayersDeck();
 
 	vector<Deck> playersDeck;
 
 	Deck shuffledDeck;
 
 	Deck playedDeck;
+
 
 private: 
 	int numberPlayers, numberSets;
