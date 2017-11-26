@@ -13,6 +13,8 @@
 #include "CardGame.h"
 #include <iterator>
 #include <vector>
+#include <algorithm>
+#include <limits>
 
 using namespace std;
 
@@ -155,22 +157,32 @@ int main()
 	cin >> numberSets;
 		
 	do {
+
 		if(numberSets<0 || numberSets>10){
 		cout << "Number of Sets is outside allowed range, please renter" << endl;
 		cin >> numberSets;
 		}
-		 if(!cin.good())
+
+		// checks the input if it is an integer
+		// 'cin>>numberSets' and 'cin.good()' are the same expressions
+		// if there is an invalid input, flag is setted to false in good() function
+		if(!cin.good())
 
         {
-
+		//ask user to enter a valid input in this case an integer
 		cout<<"Invalid input, Please enter a number specified for sets of cards : "<<endl;
+		// cin.clear function clears the false flag and with this cin can exit the loop 
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n' );
+		// cin.ignore: ignores the amount of streamsize input characters entered by user until it sees a newline (/n)
+		// 'numeric_limits<streamsize>::max()' is the maximum value of the number of characters transferred in the I/O operation
+		cin.ignore(numeric_limits<streamsize>::max(), '\n' );
+		//prompts user to get another input
 		cin >> numberSets;
 
         }
 
 	}
+
 	while(numberSets<0 || numberSets>10 ||!cin.good()); 
 
 	if(numberSets==1)
@@ -190,6 +202,7 @@ int main()
 			cout<<"For one set of cards the number of player can be maximum 7, please re-enter: "<<endl;
 			cin >> numberPlayers;	
 		}
+
 		if(!cin.good())
 
         {
