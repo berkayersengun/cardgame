@@ -5,6 +5,7 @@
 #include "CardGame.h"
 #include <iterator>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 
@@ -25,16 +26,55 @@ void CardGame::displayPlayerDecks()
 
 void playGame()
 {
-	int numberSets=1, numberPlayers=2;
+	int numberSets=1, numberPlayers=2, flag;
+	string numberSetsInput, numberPlayersInput;
 
 	cout << "---------------\n";
 	cout << "GAME STARTING \n";
 	cout << "---------------\n";
 	cout <<  "How many sets ?\n";
-	//cin >> numberSets;
+	cin >> numberSets;
+    
+
+	if (numberSets<1){
+
+	    flag=0;
+	}
+	    while (flag == 0){
+
+			cout<< "Illegal Entry! Please Enter a value greater than or equal to 1. \n";
+			cin>> numberSets;
+
+			if (numberSets>=1){
+
+				flag++;
+
+			}
+			
+		}	
+		
+
+		
+		
 
 	cout <<  "How many players ?\n";
-	//cin >> numberPlayers;
+	cin >> numberPlayers;
+	if (numberPlayers<1){
+
+	    flag=0;
+	}
+	    while (flag == 0){
+
+			cout<< "Illegal Entry! Please Enter a value greater than or equal to 2. \n";
+			cin>> numberPlayers;
+
+			if (numberPlayers>=2){
+
+				flag++;
+
+			}
+			
+		}	
 
 	//Create new game
 	CardGame game = CardGame(numberPlayers, numberSets);
