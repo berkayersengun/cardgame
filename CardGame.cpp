@@ -116,13 +116,14 @@ void CardGame::playGame()
 				if(x == playersDeck[k].getNumberOfCards() - 1){
 					// check if the shuffled deck is empty before picking new card
 					if (shuffledDeck.getNumberOfCards() == 0){
-						
-						shuffledDeck.moveAllCards(playedDeck);
-						shuffledDeck.getTopCard(); 
-						while(playedDeck.getNumberOfCards()!= 1){
-									playedDeck.getACard(1);
-									
-						}
+						//with moveallcards method all card copied from playeddeck to shuffled deck 
+						shuffledDeck.
+						moveAllCards(playedDeck);
+						//deletion of playeddeck 
+						playedDeck.deleteCardDeck();
+						//get the top card and erase from shuffleddeck then move it to playeddeck
+						playedDeck.addCard(shuffledDeck.getTopCard());
+
 						// Shuffle Cards after swapping
 						shuffledDeck.shuffleDeck();
 					}
@@ -146,7 +147,7 @@ void CardGame::playGame()
 
 int main()
 {
-	int numberSets, numberPlayers;
+	int numberSets=1, numberPlayers=2;
 	cout << "•#•#•#•#•#•#• Hello and welcome to the game ! •#•#•#•#•#•#•\n";
 	cout << "---------------\nGAME STARTING\n---------------\n";
 	
@@ -207,11 +208,8 @@ int main()
 		
 	}
 	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || !cin.good());
+	
 	CardGame game = CardGame(numberPlayers, numberSets);
 	game.playGame();
-	//game.shuffledDeck.createInitialisedCardDeck(1);
-   // game.shuffledDeck.displayDeck();
-//	game.shuffledDeck.deleteCardDeck();
-//	game.shuffledDeck.displayDeck();
-//	cout << game.shuffledDeck.getNumberOfCards() << endl;
+
 }

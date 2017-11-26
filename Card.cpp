@@ -20,12 +20,7 @@ Card::Card(Rank rank, Suit suit) : rank(rank), suit(suit) {}
 // destructor to create a card, setting the suit and rank
 Card::~Card() {}
 
-// set an existing card to a particular value
-void Card::setCard(Rank rank, Suit suit)
-{
-	rank = rank;
-	suit = suit;
-}
+
 // Function Definition of getRank() returns rank two=2 through to Ace
 int Card::getRank()
 {
@@ -44,59 +39,59 @@ ostream& operator<<(ostream& os, const Card& c)
 	//os << "Rank : ";
 	switch (r) {
 	case Two:
-		os << c.rank;
+		os << "Two-";
 		break;
 	case Three:
-		os << c.rank;
+		os << "Three-";
 		break;
 	case Four:
-		os << c.rank;
+		os << "Four-";
 		break;
 	case Five:
-		os << c.rank;
+		os << "Five-";
 		break;
 	case Six:
-		os << c.rank;
+		os << "Six-";
 		break;
 	case Seven:
-		os << c.rank;
+		os << "Seven-";
 		break;
 	case Eight:
-		os << c.rank;
+		os << "Eight-";
 		break;
 	case Nine:
-		os << c.rank;
+		os << "Nine-";
 		break;
 	case Ten:
-		os << c.rank;
+		os << "Ten-";
 		break;
 	case Jack:
-		os << 'J';
+		os << "Jack-";
 		break;
 	case Queen:
-		os << 'Q';
+		os << "Queen-";
 		break;
 	case King:
-		os << 'K';
+		os << "King-";
 		break;
 	case Ace:
-		os << 'A';
+		os << "Ace-";
 		break;
 	}
 
 	//os << " Suit : ";
 	switch (s) {
 	case SPA:
-		os << 'S';
+		os << "Spades";
 		break;
 	case HRT:
-		os << 'H';
+		os << "Heart";
 		break;
 	case CLB:
-		os << 'C';
+		os << "Club";
 		break;
 	case DIA:
-		os << 'D';
+		os << "Diamond";
 		break;
 	}
 

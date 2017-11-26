@@ -20,8 +20,7 @@ public:
 	int getSuit();// member methods of class Card
 	int getRank();// member methods of class Card
 
-	// set an existing card to a particular value
-	void setCard(Rank rank, Suit suit);
+	
 
 	// display the card
 	void displayCard();
