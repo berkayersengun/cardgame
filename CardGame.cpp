@@ -147,7 +147,7 @@ void CardGame::playGame()
 
 int main()
 {
-	int numberSets=1, numberPlayers=2;
+	int numberSets, numberPlayers;
 	cout << "•#•#•#•#•#•#• Hello and welcome to the game ! •#•#•#•#•#•#•\n";
 	cout << "---------------\nGAME STARTING\n---------------\n";
 	
