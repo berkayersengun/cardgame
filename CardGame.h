@@ -11,8 +11,8 @@
 #include <iostream>
 using namespace std;
 
-const int MAX_NUMBER_SETS = 2;
-const int MAX_NUMBER_PLAYERS = MAX_NUMBER_SETS * 7;
+const int MAX_NUMBER_SETS = 10;
+const int MAX_NUMBER_PLAYERS = 14;
 
 
 class CardGame 

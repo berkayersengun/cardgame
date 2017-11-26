@@ -152,39 +152,66 @@ int main()
 	
 	cout <<  "How many sets of cards ? (min: 1, max:" << MAX_NUMBER_SETS << ").\n";
 	cin >> numberSets;
-
-	
+		
 	do {
-		if(numberSets<0){
+		if(numberSets<0 || numberSets>10){
 		cout << "Number of Sets is outside allowed range, please renter" << endl;
 		cin >> numberSets;
 		}
-	}
-	while(numberSets<0);
+		 if(!cin.good())
 
+        {
+
+		cout<<"Invalid input, Please enter a number specified for sets of cards : "<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n' );
+		cin >> numberSets;
+
+        }
+
+	}
+	while(numberSets<0 || numberSets>10 ||!cin.good()); 
+
+	if(numberSets==1)
+	{
+	cout <<  "How many players in the game ? (min: 2, max:" << 7 << ").\n";
+	cin >> numberPlayers;
+	}
+	else
+	{
 	cout <<  "How many players in the game ? (min: 2, max:" << MAX_NUMBER_PLAYERS << ").\n";
 	cin >> numberPlayers;
+	}
 
 	do 
 	{
 		if (numberSets==1 && numberPlayers>7){
-			cout<<"For one set of cards the number of player can be maximum 7, please re-enter: ";
+			cout<<"For one set of cards the number of player can be maximum 7, please re-enter: "<<endl;
 			cin >> numberPlayers;	
 		}
+		if(!cin.good())
+
+        {
+
+		cout<<"Invalid input, Please enter a number specified for number of players : "<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n' );
+		cin >> numberSets;
+
+        }
 		
-		else{
+		else if (numberPlayers<2 || numberPlayers> 14){
 			cout << "Number of Players is outside allowed range, please re-enter: " << endl;
 			cin >> numberPlayers;
 		}
 		
-
 	}
-	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || (numberSets==2 && numberPlayers>14) );
+	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || !cin.good());
 	CardGame game = CardGame(numberPlayers, numberSets);
-	//game.playGame();
-	game.shuffledDeck.createInitialisedCardDeck(1);
-    game.shuffledDeck.displayDeck();
-	game.shuffledDeck.deleteCardDeck();
-	game.shuffledDeck.displayDeck();
-	cout << game.shuffledDeck.getNumberOfCards() << endl;
+	game.playGame();
+	//game.shuffledDeck.createInitialisedCardDeck(1);
+   // game.shuffledDeck.displayDeck();
+//	game.shuffledDeck.deleteCardDeck();
+//	game.shuffledDeck.displayDeck();
+//	cout << game.shuffledDeck.getNumberOfCards() << endl;
 }
