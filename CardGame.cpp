@@ -13,6 +13,7 @@
 #include "CardGame.h"
 #include <iterator>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 
