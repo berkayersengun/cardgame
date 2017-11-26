@@ -13,7 +13,6 @@
 #include "CardGame.h"
 #include <iterator>
 #include <vector>
-#include <typeinfo>
 
 using namespace std;
 
@@ -36,64 +35,12 @@ void CardGame::displayPlayerDecks()
 // Give each player 7 cards 
 void CardGame::dealCards()
 {
-<<<<<<< HEAD
-	int numberSets=1, numberPlayers=2, flag;
-	string numberSetsInput, numberPlayersInput;
-
-	cout << "---------------\n";
-	cout << "GAME STARTING \n";
-	cout << "---------------\n";
-	cout <<  "How many sets ?\n";
-	cin >> numberSets;
-    
-
-	if (numberSets<1){
-
-	    flag=0;
-	}
-	    while (flag == 0){
-
-			cout<< "Illegal Entry! Please Enter a value greater than or equal to 1. \n";
-			cin>> numberSets;
-
-			if (numberSets>=1){
-
-				flag++;
-
-			}
-			
-		}	
-		
-
-		
-		
-
-	cout <<  "How many players ?\n";
-	cin >> numberPlayers;
-	if (numberPlayers<1){
-
-	    flag=0;
-	}
-	    while (flag == 0){
-
-			cout<< "Illegal Entry! Please Enter a value greater than or equal to 2. \n";
-			cin>> numberPlayers;
-
-			if (numberPlayers>=2){
-
-				flag++;
-
-			}
-			
-		}	
-=======
 	for(int j = 0; j < 7; j++){
 		for(int i = 0; i < numberPlayers; i++){
 			playersDeck[i].addCard(shuffledDeck.getTopCard());
 		}
 	}
 }
->>>>>>> b96fbc770cb296cf63243eb252dc07e026547328
 
 // Create a vector to collect store the card decks of all players in the game
 void CardGame::createPlayersDeck()
@@ -205,15 +152,34 @@ int main()
 	
 	cout <<  "How many sets of cards ? (min: 1, max:" << MAX_NUMBER_SETS << ").\n";
 	cin >> numberSets;
-	if (numberSets < 1 || numberSets > MAX_NUMBER_SETS){
+
+	
+	do {
+		if(numberSets<0){
 		cout << "Number of Sets is outside allowed range, please renter" << endl;
+		cin >> numberSets;
+		}
 	}
+	while(numberSets<0);
+
 	cout <<  "How many players in the game ? (min: 2, max:" << MAX_NUMBER_PLAYERS << ").\n";
 	cin >> numberPlayers;
-	if (numberPlayers < 2 || numberPlayers > MAX_NUMBER_PLAYERS){
-		cout << "Number of Players is outside allowed range, please renter" << endl;
-	}
 
+	do 
+	{
+		if (numberSets==1 && numberPlayers>7){
+			cout<<"For one set of cards the number of player can be maximum 7, please re-enter: ";
+			cin >> numberPlayers;	
+		}
+		
+		else{
+			cout << "Number of Players is outside allowed range, please re-enter: " << endl;
+			cin >> numberPlayers;
+		}
+		
+
+	}
+	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || (numberSets==2 && numberPlayers>14) );
 	CardGame game = CardGame(numberPlayers, numberSets);
 	game.playGame();
 }
