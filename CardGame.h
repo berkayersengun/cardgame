@@ -28,7 +28,7 @@ public:
 
 	// CardGame methods
 	void displayPlayerDecks();
-	void playGame();
+	int playGame();
 	void dealCards();
 	void createPlayersDeck();
 

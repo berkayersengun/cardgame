@@ -24,10 +24,6 @@ public:
 	// destructor
 	~Card();
 
-	// return rank two=2 through to Ace 
-	// return suit SPA, HRT, CLB, DIA
-
-
 	// Accessor methods
 	// accessor for suit
 	int getSuit();
