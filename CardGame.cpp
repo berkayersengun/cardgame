@@ -175,15 +175,6 @@ int main(){
 	cin >> numberSets;
 		
 	do {
-
-		if(numberSets<0 || numberSets>10){
-		cout << "Number of Sets is outside allowed range, please renter" << endl;
-		cin >> numberSets;
-		}
-
-		// checks the input if it is an integer
-		// 'cin>>numberSets' and 'cin.good()' are the same expressions
-		// if there is an invalid input, flag is setted to false in good() function
 		if(!cin.good())
 
         {
@@ -198,6 +189,16 @@ int main(){
 		cin >> numberSets;
 
         }
+
+		if(numberSets<0 || numberSets>10){
+		cout << "Number of Sets is outside allowed range, please renter" << endl;
+		cin >> numberSets;
+		}
+
+		// checks the input if it is an integer
+		// 'cin>>numberSets' and 'cin.good()' are the same expressions
+		// if there is an invalid input, flag is setted to false in good() function
+		
 
 	}
 
