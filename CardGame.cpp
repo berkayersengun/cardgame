@@ -270,7 +270,6 @@ int main(){
 	}
 	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || !cin.good());
 	
-
 	// Create an instance of the CardGame class
 	CardGame game = CardGame(numberPlayers, numberSets);
 
