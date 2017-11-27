@@ -18,25 +18,29 @@
 
 using namespace std;
 
-// Constructor
+// Constructor of CardGame
 CardGame::CardGame(int numberPlayers, int numberSets) : 
 numberPlayers(numberPlayers), numberSets(numberSets){}
 
-// Destructor
+// Destructor of CardGame
 CardGame::~CardGame() {}
 
+// displayPlayerDecks()
 // Displays the card for each player
-void CardGame::displayPlayerDecks()
-{
+// param: none
+// return: void
+void CardGame::displayPlayerDecks(){
 	for(int i = 0; i < numberPlayers; i++){
 		cout << "Player " << i + 1 << " : \n";
 		playersDeck[i].displayDeck();
 	}
 }
 
+// dealCards()
 // Give each player 7 cards 
-void CardGame::dealCards()
-{
+// param: none
+// return: void
+void CardGame::dealCards(){
 	for(int j = 0; j < 7; j++){
 		for(int i = 0; i < numberPlayers; i++){
 			playersDeck[i].addCard(shuffledDeck.getTopCard());
@@ -44,15 +48,22 @@ void CardGame::dealCards()
 	}
 }
 
+// createPlayersDeck()
 // Create a vector to collect store the card decks of all players in the game
-void CardGame::createPlayersDeck()
-{
+// param: none
+// return: void
+void CardGame::createPlayersDeck(){
 	for(int i = 0; i < numberPlayers; i++){
 		Deck newPlayerDeck = Deck();
 		newPlayerDeck.createEmptyCardDeck();
 		playersDeck.push_back(newPlayerDeck);
 	}
 }
+
+// playGame()
+// Plays the actual game
+// param: none
+// return: void
 void CardGame::playGame()
 {
 	//Create shuffled Deck
@@ -75,7 +86,6 @@ void CardGame::playGame()
 	int turnCounter = 0;
 	//another for loop needed in here for every hand for(each hand loop)
 	while (turnCounter != 100){
-
 		// Display the top card after all players played.
 		cout << "=============\n Turn nº " << turnCounter + 1 << "\n=============" << endl;
 		cout << "Top card : ";
@@ -84,7 +94,6 @@ void CardGame::playGame()
 
 		//loop for each player
 		for (int k = 0; k < numberPlayers; k++){
-		
 			cout << "Player " <<k+1<<" has " << playersDeck[k].getNumberOfCards() << " card(s) : ";
 			playersDeck[k].displayDeck();
 					
@@ -130,11 +139,11 @@ void CardGame::playGame()
 						shuffledDeck.shuffleDeck();
 					}
 					playersDeck[k].addCard(shuffledDeck.getTopCard());
-					cout << "Player " << k + 1 << " picked a card from the shuffled deck."<<endl;
+					cout << "Player " << k + 1 << " picked a card from the shuffled deck." << endl;
 
 					// Display how many cards remaining			
 					//cout << " (Cards remaining : " << game.playersDeck[k].getNumberOfCards() << "). \n";
-					cout<< "Player "<< k + 1 <<" has " << playersDeck[k].getNumberOfCards()<<" cards : " ;
+					cout<< "Player "<< k + 1 <<" has " << playersDeck[k].getNumberOfCards() << " cards : " ;
 					playersDeck[k].displayDeck();
 					
 					break;
@@ -143,16 +152,25 @@ void CardGame::playGame()
 		}
 	turnCounter++;
 	cout << endl;
+
 	}		
 	cout << "Game ends as a draw, there was no winner." << endl;
 }
 
-int main()
-{
+
+// main()
+// Main function of the game
+// param: none
+// return: int - if error or not
+int main(){
 	int numberSets, numberPlayers;
+
+	// Display intro
 	cout << "•#•#•#•#•#•#• Hello and welcome to the game ! •#•#•#•#•#•#•\n";
 	cout << "---------------\nGAME STARTING\n---------------\n";
 	
+
+	// ask user how many set of cards
 	cout <<  "How many sets of cards ? (min: 1, max:" << MAX_NUMBER_SETS << ").\n";
 	cin >> numberSets;
 		
@@ -183,17 +201,16 @@ int main()
 
 	}
 
-	while(numberSets<0 || numberSets>10 ||!cin.good()); 
+	// While the user doesn't give a valid input
+	while(numberSets<0 || numberSets>10 || !cin.good()); 
 
-	if(numberSets==1)
-	{
-	cout <<  "How many players in the game ? (min: 2, max:" << 7 << ").\n";
-	cin >> numberPlayers;
+	if(numberSets==1){
+		cout <<  "How many players in the game ? (min: 2, max:" << 7 << ").\n";
+		cin >> numberPlayers;
 	}
-	else
-	{
-	cout <<  "How many players in the game ? (min: 2, max:" << MAX_NUMBER_PLAYERS << ").\n";
-	cin >> numberPlayers;
+	else{
+		cout <<  "How many players in the game ? (min: 2, max:" << MAX_NUMBER_PLAYERS << ").\n";
+		cin >> numberPlayers;
 	}
 
 	do 
@@ -222,7 +239,11 @@ int main()
 	}
 	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || !cin.good());
 	
+
+	// Create an instance of the CardGame class
 	CardGame game = CardGame(numberPlayers, numberSets);
+
+	// Play the game
 	game.playGame();
 
 }

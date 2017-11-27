@@ -15,22 +15,44 @@ using namespace std;
 Card::Card() = default;
 
 // constructor to create a card, setting the suit and rank
+// param: Rank rank - rank of the new card
+// param: Suit suit - suit of the new card
+// return: none - Creates an instance of the class Card
 Card::Card(Rank rank, Suit suit) : rank(rank), suit(suit) {}
 
 // destructor to create a card, setting the suit and rank
+// param: none
+// return: none - Deletes the card from memory
 Card::~Card() {}
 
 
 // Function Definition of getRank() returns rank two=2 through to Ace
-int Card::getRank()
-{
+// param: none;
+// return: integer rank of the card
+int Card::getRank(){
 	return rank;
 }
+
 // Function Definition of getSuit() return suit SPA, HRT, CLB, DIA
-int Card::getSuit()
-{
+// param: none
+// return: integer suit of the card
+int Card::getSuit(){
 	return suit;
 }
+
+// Mutator for rank of the card
+// param: int rank - New rank of the card
+// return: void
+void Card::setRank(int rank){
+	rank = rank;
+}
+
+// Mutator for suit of the card
+// param: int suit - New suit of the card
+void Card::setSuit(int suit){
+	suit = suit;
+}
+
 //Stream Extraction Overloading operator function definition follows
 ostream& operator<<(ostream& os, const Card& c)
 {
@@ -98,8 +120,11 @@ ostream& operator<<(ostream& os, const Card& c)
 	return os;
 }
 
-//Funtion to display the card using this pointer
-//called by reference of the data structure "vector"
+// void displayCard()
+// Prints out a string representation of the card object
+// called by reference of the data structure "vector"
+// param: none
+// return: void
 void Card::displayCard()					
 {
 	//Using this pointer to display sequentially the cards in the deck

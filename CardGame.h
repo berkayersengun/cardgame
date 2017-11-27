@@ -18,28 +18,33 @@ const int MAX_NUMBER_PLAYERS = 14;
 class CardGame 
 {
 public:
-	CardGame();
 
+	// Constructors of CardGame
+	CardGame();
 	CardGame(int numberPlayers, int numberSets);
 
+	// Destructor of CardGame
 	~CardGame();
 
+	// CardGame methods
 	void displayPlayerDecks();
-
 	void playGame();
-
 	void dealCards();
-
 	void createPlayersDeck();
 
+	// Different decks during the game
+	// Decks of all players in a vector<Deck>
 	vector<Deck> playersDeck;
 
+	// The beginning shuffled Deck
 	Deck shuffledDeck;
 
+	// the deck with cards already played
 	Deck playedDeck;
 
 
 private: 
+	// private members
 	int numberPlayers, numberSets;
 
 };

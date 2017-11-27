@@ -19,29 +19,42 @@
 
 using namespace std;
 
+
+// int randomFunc()
+// returns a andom number for the method shuffleDeck().
+// param: int i - seed for random function
+// return: int - Random number
 int randomFunc(int i) {
 	srand(unsigned(std::time(0)));
 	return rand() % i;
 }
 
-// Constructors
+// Constructors of Deck
 Deck::Deck() = default;
 
 Deck::Deck(int setNumber) : 
 setNumber(setNumber) {}
 
-// Destructor
+// Destructor of Deck
 Deck::~Deck() {}
 
-// copy constructor
+// copy constructor of Deck
 Deck::Deck( const Deck& otherDeck ) : deck(otherDeck.deck), setNumber(otherDeck.setNumber) {}
 
+
+// void createEmptyCardDeck()
+// Creates an empty CardDeck
+// param: none
+// return: void
 void Deck::createEmptyCardDeck()
 {
     vector<Card> deck; 
 }
 
+// createInitialisedCardDeck(int setNumber)
 // Lead initilised deck set up to create a single 52 card deck for now
+// param: int setNumber - Number of sets of cards for the game
+// return: void
 void Deck::createInitialisedCardDeck(int setNumber)
 {
     //check if setNumber is correct.
@@ -63,7 +76,11 @@ void Deck::createInitialisedCardDeck(int setNumber)
 	
 }
 
+// initialiseCardDeck(int setNumber, Deck deckToInitialise)
 //initialises the deck created in the Deck::createInitialisedCardDeck(int setNumber)
+// param: int setNumber - Number of set of cards for the game
+// param: Deck deckToInitialise - Takes a  deck already created
+// return: void
 void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
 {   
     if((setNumber * deckSize) == static_cast<int>(deckToInitialise.deck.size()))
@@ -76,13 +93,19 @@ void Deck::initialiseCardDeck(int setNumber, Deck deckToInitialise)
     cout<<"not enough cards ?";
     
 }
-
+// getNumberOfCards()
+// returns the number of cards in the deck
+// param: none
+// return: int - number of cards in the deck
 int const Deck::getNumberOfCards()
 {
 	return deck.size();
 };
 
-// Prints of the current deck of cards
+// displayDeck()
+// Prints out the current deck of cards
+// param: none
+// return: void
 void Deck::displayDeck()
 {
     if (deck.size() != 0){
@@ -95,7 +118,10 @@ void Deck::displayDeck()
     } else cout << "Card Deck is empty\n";
 }
 
+// getTopCard()
 // Return and remove the top card of the deck
+// param: none
+// return: Card - instance (top card of the deck) 
 Card Deck::getTopCard() 
 {
     Card topCard;
@@ -105,9 +131,12 @@ Card Deck::getTopCard()
     }
     return topCard;
 }
+
+// getACard(int number)
 // Return and remove the number n-th card of the deck
-Card Deck::getACard(int number) 
-{
+// param: int number - position of the card in the deck
+// return: Card - instance of the position indicated
+Card Deck::getACard(int number) {
     Card nthCard;
     if(!deck.empty()) {
         nthCard = deck[number];
@@ -116,50 +145,67 @@ Card Deck::getACard(int number)
     return nthCard;
 }
 
-Card Deck::lookAtCard(int number) 
-{
-    
+// lookAtCard(int number)
+// Return a card at position number without removing it from the deck
+// param: int number - position of the card in the deck
+// return: Card - instance of the position indicated
+Card Deck::lookAtCard(int number) {
     Card nthCard;
     if(!deck.empty()) {
-        
         nthCard = deck[number];
     }
     return nthCard;
 }
 
-// Add Card method
-void Deck::addCard(Card card) 
-{
+// addCard(Card card)
+// Add Card to the deck
+// param: Card card - add an instance of Card to the deck
+// return: void
+void Deck::addCard(Card card) {
     if (typeid(card).name() == typeid(Card).name()) 
     deck.insert(deck.begin(),card);
 }
 
+// shuffleDeck()
+// Method to shuffle the deck
+// param: none
+// return: void
+void Deck::shuffleDeck(){ 
+    random_shuffle(deck.begin(), deck.end(), randomFunc); 
+}
 
+// moveAllCards(Deck copyDeck)
+// Method to move all cards from one deck to another
+// param: Deck copyDeck - Deck to copy from
+// return: none
+void Deck::moveAllCards(Deck copyDeck){
+    deck.swap(copyDeck.deck);
+    copyDeck.setNumber = setNumber;
+ }
+// deleteCardDeck()
+// Method to delete the deck from the memory.
+// param: none
+// return: none
+void Deck:: deleteCardDeck() {
+    deck.clear();
+    deck.shrink_to_fit();
+}
+
+// Accessors
+// Accessor for deck
+// param: none
+// return: vector<Card> of the deck
 vector<Card> Deck::getDeck(){
     return deck;
 }
 
+// Mutators
+// Mutator for deck
+// param: vector<Card> deck - new deck of cards for the instance
 void Deck::setDeck(vector<Card> deck){
     deck = deck;
 }
 
-// Method to shuffle the deck - now working
-void Deck::shuffleDeck() 
-{ 
-    random_shuffle(deck.begin(), deck.end(), randomFunc); 
-}
-
-void Deck::moveAllCards(Deck copyDeck)
- {
-    deck.swap(copyDeck.deck);
-    copyDeck.setNumber = setNumber;
- }
-
-void Deck:: deleteCardDeck() 
-{
-    deck.clear();
-    deck.shrink_to_fit();
-}
 
 
 
