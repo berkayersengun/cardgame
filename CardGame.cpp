@@ -201,7 +201,7 @@ int main(){
 
 	}
 
-	// While the user doesn't give a valid input
+	// While the user doesn't give a valid input2
 	while(numberSets<0 || numberSets>10 || !cin.good()); 
 
 	if(numberSets==1){
@@ -215,10 +215,6 @@ int main(){
 
 	do 
 	{
-		if (numberSets==1 && numberPlayers>7){
-			cout<<"For one set of cards the number of player can be maximum 7, please re-enter: "<<endl;
-			cin >> numberPlayers;	
-		}
 
 		if(!cin.good())
 
@@ -227,14 +223,20 @@ int main(){
 		cout<<"Invalid input, Please enter a number specified for number of players : "<<endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n' );
-		cin >> numberSets;
+		cin >> numberPlayers;
 
         }
+		if (numberSets==1 && numberPlayers>7){
+			cout<<"For one set of cards the number of player can be maximum 7, please re-enter: "<<endl;
+			cin >> numberPlayers;	
+		}
+	 
 		
-		else if (numberPlayers<2 || numberPlayers> 14){
+		 if (numberPlayers<2 || numberPlayers> 14){
 			cout << "Number of Players is outside allowed range, please re-enter: " << endl;
 			cin >> numberPlayers;
 		}
+
 		
 	}
 	while(numberPlayers<2 || numberPlayers> 14 || (numberSets==1 && numberPlayers>7) || !cin.good());
