@@ -1,0 +1,184 @@
+Card Class Specifications
+
+enum Rank {Two=2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace}; //Declaring variable Rank of type ENUM
+enum Suit {SPA, HRT, CLB, DIA}; //Declaring variable Suit of type ENUM
+
+public methods
+	// 
+	Card(); // constructor to create a blank card
+	Pre: none
+	Post: Empty cards exist
+
+	Card(Rank rank, Suit suit); // constructor creating a setting the suit and rank
+	Pre: none
+	Post: Card with suit and rank exists
+	
+	~Card(); // destructor
+	Pre: Card Exist
+	Post; Card Destroyed
+
+	int getSuit(); // Accessor methods for suit
+	Pre: Card Suit exists but private
+	Post: Card Suit can be accessed
+	
+	int getRank(); // Accessor for rank
+	Pre: Card Rank exists but private
+	Post: Card Rank can be accessed
+
+	void setSuit(int suit);	// Setter methods for suit
+	Pre: Card Suit exists but private
+	Post: Card Rank can be set to specified value
+
+	void setRank(int rank); // Setter methods for suit
+	Pre: Card Rank exists but private
+	Post: Card Rank can be set to specified value
+	
+	void displayCard();// print the card suit and rank
+	Pre: Card with suit and rank exists
+	Post: Card Suit and Rank printed to the terminal
+
+	friend ostream& operator<<(ostream&, const Card &); // Stream output overloading function prototype
+	Pre:
+	Post: Overload "<<" to print out the care suit and rank
+private variables
+	// private attributes
+	Rank rank; // rank of the card
+	Suit suit; // suit of the card
+
+
+
+Deck Class Specifications
+
+private class attributes
+
+	enum { deckSize = 52 }; // Size of cards which never changes.
+	vector<Card> deck; // deck of cards
+	int setNumber = 1; // Default set of card to be used in the game
+	int MIN_SET_CARDS = 1; // Minimum number of set of cards
+	int MAX_SET_CARDS = 10; // Maximum set of cards to be used in the game
+
+public:
+	// member methods
+
+	Deck(); // constructor to create an empty deck class instance
+	Pre: none
+	Post: Empty Deck exist
+
+	Deck(int setNumber); // constructor to create an empty deck to be initialised
+	Pre: none
+	Post: Deck exist with specified number of sets
+
+	Deck( const Deck& otherDeck ); // copy constructor
+	Pre: Instance of a Deck exists
+	Post: Copies the deck and setNumber properties to another instance of Deck class
+
+	~Deck(); //destructor of deck
+	Pre: Card Exist
+	Post; Card Destroyed
+
+	// methods to manipulate the deck
+
+	void shuffleDeck(); // shuffle the deck of card using seed function
+	Pre: Deck of card exists and initialised and arranged in order
+	Post: The order of the cards in the deck is shuffled – no cards are removed or added.
+
+	void displayDeck(); // print the each cards suit and rank in the deck
+	Pre: Deck of n Cards with suit and rank exists
+	Post: Suit and Rank of each Card in the deck printed to the terminal
+
+	void createEmptyCardDeck(); //Creates an empty deck of cards
+	Pre: none
+	Post: Empty deck of cards exist.
+
+	void createInitialisedCardDeck(int setNumber); //Creates a deck of cards initialised with the specified number of sets of cards. Sets of cards are stored in an ordered fashion (see initialiseCardDeck)
+	Pre: none
+	Post: Initialised deck of card exist or an error is indicated if sufficient resources not available
+
+	void initialiseCardDeck(int setNumber,Deck duck); //initialises the CardDeck deck with setNum sets of cards (each set contains 52 cards). Sets of cards are stored in an ordered fashion, from club Ace down to club Two, Spade Ace down to spade Two, etc. (in order Club, Space, Heart, Diamond and then Ace down to Two). If multiple sets are used, all cards of the first set are stored first, followed by all cards of the second set etc.
+	Pre: deck is a valid instantiation of CardDeck.
+	Post: deck contains setNum ordered sets of cards or an error is indicated if sufficient resources not available.
+	
+	void moveAllCards(Deck copyDeck); //Moves all cards from the CardDeck source to CardDeck destination.
+	Pre: source and destination are valid instantiations of CardDeck.
+	Post: All cards have been moved from source (which now is empty) to destination (which now contains additionally all cards previously in source)
+	
+	void deleteCardDeck(); // Deletes a deck of cards.
+	Pre: deck is a valid instantiation of the CardDeck.
+	Post: The CardDeck deck is removed from memory.
+
+	int const getNumberOfCards(); //Returns the number of cards in the deck.
+	Pre: deck is a valid instantiation of CardDeck.
+	Post: The CardDeck deck remains unchanged. The number of cards in the deck is returned.
+
+	Card getTopCard(); //Returns (and removes) the topmost card of the deck.
+	Pre: deck is a valid instantiation of CardDeck.
+	Post: If cards are available on the deck, the topmost card is returned and removed from the deck. If the deck is empty, a “dummy” card is returned.
+	
+	Card getACard(int number); //Returns (and removes) the number-th card of the deck (from the top).
+	Pre: deck is a valid instantiation of CardDeck.
+	Post: If deck contains more cards than number, the number-th card is returned and removed from the deck. If number refers to a non-existent card, an error is indicated.
+	
+	Card lookAtCard(int number); //Returns (but leaves it in the deck) the number-th card of the deck (from the top).
+	Pre: deck is a valid instantiation of CardDeck.
+	Post: If deck contains more cards than number, the number-th card is returned from the deck. The returned card remains in the deck, i.e. the deck is not modified. If number refers to a non-existent card, an error is indicated
+
+	void addCard(Card card); //Adds the card to the top of the deck.
+	Pre: deck is a valid instantiation of CardDeck, card is a valid Card.
+	Post: The card has been added to the top of deck (the number of cards in deck has increased by one).
+	
+	vector<Card> getDeck(); // accessor methods for vector of card in deck
+	Pre: vector of Cards in the deck exists but private
+	Post: vector of Cards in the deck can be obtained
+
+	void setDeck(vector<Card> deck); // mutator methods for vector of card in deck
+	Pre: vector of Cards in the deck exists but private
+	Post: vector of Cards in the deck can be changed
+
+
+
+Deck Class Specifications
+
+const int MAX_NUMBER_SETS = 10;  // Maximum number of sets
+const int MAX_NUMBER_PLAYERS = 14; // Maximum number of Players
+
+public:
+
+	CardGame(); // Constructors of CardGame
+	Pre: none
+	Post: Empty CardGame Class now exists
+
+	CardGame(int numberPlayers, int numberSets); // Constructors of CardGame
+	Pre: none
+	Post: CardGame Class initialised with players size and number of sets
+
+	~CardGame(); // Destructor of CardGame
+	Pre: Card Exist
+	Post; CardGame destroyed, "clean up" when CardGame is no longer necessary
+
+	// CardGame methods
+
+	void displayPlayerDecks(); // Print out all the cards for all players in the game
+	Pre: PlayerDecks is a valid instantiation of CardDeck.
+	Post: Print all the cars for each player in the playersDeck vector
+
+	void playGame(); //Start Game
+	Pre: cardGame is a valid instantiation of CardGame, with setNumber and number of player
+	Post: Card game start automatically
+
+	void dealCards(); // Deals 7 cards to each player in the game
+	Pre: cardGame is a valid instantiation of CardGame, with setNumber and number of player
+	Post: PlayersDeck now contains 7 cards for each playerDeck
+
+	void createPlayersDeck(); // create a vector Decks that hold all players card
+	Pre: Number of Players and setNumber specified in Cardgame instance
+	Post: PlayerDeck initialised and stored in the playersDeck vector
+
+	vector<Deck> playersDeck; // Decks of all players in a vector<Deck>
+	
+	Deck shuffledDeck; // Deck holding hidded card that have been shuffled
+
+	Deck playedDeck; // the deck with cards that have already been played
+
+private: 
+	// private members
+	int numberPlayers, numberSets;
