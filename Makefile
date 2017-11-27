@@ -1,5 +1,4 @@
 
-all : game 
 
 game: cardGame
 	./cardGame
