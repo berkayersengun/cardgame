@@ -1,6 +1,11 @@
 
-game: Card.o Deck.o CardGame.o
-	g++ -o game Card.o Deck.o CardGame.o -g
+all : game 
+
+game: cardGame
+	./cardGame
+
+cardGame: Card.o Deck.o CardGame.o
+	g++ -o cardGame Card.o Deck.o CardGame.o -g
 
 Card.o: Card.h Card.cpp
 	g++ -Wall -std=c++11 -ggdb -c Card.cpp
@@ -13,4 +18,4 @@ CardGame.o: CardGame.h CardGame.cpp
 
 # clean up target - no dependencies
 clean:
-	rm firstClass *.o *~
+	rm  firstClass *.o *~
