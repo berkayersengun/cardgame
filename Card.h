@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////
 //
-// Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
-// Group 4 project for ED5021/EE6411 
+// Author: Berkay Ersengun 
 // Date: 26 November,2017.
 // Card.cpp - class modelling a single card defined by suit and rank
 /////////////////////////////////////////////////

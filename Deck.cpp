@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////
 //
-// Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
-// Group 4 project for ED5021/EE6411 
+// Authors: Berkay Ersengun 
 // Date: 26 November,2017.
 // Deck.cpp - class modelling a a deck of 52 excluding joker card
 /////////////////////////////////////////////////
@@ -178,9 +177,14 @@ void Deck::shuffleDeck(){
 // Method to move all cards from one deck to another
 // param: Deck copyDeck - Deck to copy from
 // return: none
-void Deck::moveAllCards(Deck copyDeck){
-    deck.swap(copyDeck.deck);
-    copyDeck.setNumber = setNumber;
+void Deck::moveAllCards(Deck &mainDeck, Deck &copyDeck){
+    Deck temp;
+    temp = mainDeck ;
+    mainDeck = copyDeck;
+    copyDeck = temp; 
+        
+    // deck.swap(copyDeck.deck);
+    // copyDeck.setNumber = setNumber;
  }
 // deleteCardDeck()
 // Method to delete the deck from the memory.

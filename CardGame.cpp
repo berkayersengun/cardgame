@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////
 //
-// Authors: Johnson Olayiwola - 17134609, Vasanth Solomon Suresh - 17102332, Berkay Ersengun - 17121264, Luis Willnat - 17105536
+// Author: Berkay Ersengun
 // Cardgame.cpp - class to simulate the actually card game
-// Group 4 project for ED5021/EE6411 
 // Date: 26 November, 2017.
 /////////////////////////////////////////////////
 
@@ -144,7 +143,7 @@ int CardGame::playGame()
 					// check if the shuffled deck is empty before picking new card
 					if (shuffledDeck.getNumberOfCards() == 0){
 						//with moveallcards method all card copied from playeddeck to shuffled deck 
-						shuffledDeck.moveAllCards(playedDeck);
+						shuffledDeck.moveAllCards(playedDeck,shuffledDeck);
 						//deletion of playeddeck 
 						playedDeck.deleteCardDeck();
 						//get the top card and erase from shuffleddeck then move it to playeddeck
